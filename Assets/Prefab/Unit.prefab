@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3948789703579610801}
   m_Layer: 0
   m_Name: Unit
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   team: 0
   unitPower: 2
   unitSpeed: 1
+  unitPowerText: {fileID: 9198885493131115602}
 --- !u!1 &5485847673227666348
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ GameObject:
   - component: {fileID: 3594457685845192619}
   - component: {fileID: 9198885493131115602}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PowerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

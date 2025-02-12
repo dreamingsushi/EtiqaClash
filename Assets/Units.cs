@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ public class Units : MonoBehaviour
     public int unitPower;
     public float unitSpeed;
     private Rigidbody2D rb;
-    float originalSpeed;
+    public float originalSpeed;
+    public bool colliding;
+    [SerializeField] private TMP_Text unitPowerText;
     public enum TeamColor
     {
         Yellow, Black
@@ -16,12 +19,25 @@ public class Units : MonoBehaviour
     {
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
+        unitPowerText.text = unitPower.ToString();
     }
 
     void Update()
     {
         rb.mass = unitPower;
+
+        unitPowerText.text = unitPower.ToString();
+
         MoveUnit();
+
+        if (colliding)
+        {
+            unitSpeed = 1;
+        }
+        else
+        {
+            unitSpeed = originalSpeed;
+        }
     }
     private void MoveUnit()
     {
@@ -39,11 +55,11 @@ public class Units : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        unitSpeed = 1;
+        colliding = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        unitSpeed = originalSpeed;
+        colliding = false;
     }
 }
