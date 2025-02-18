@@ -179,7 +179,12 @@ MonoBehaviour:
   team: 0
   unitPower: 2
   unitSpeed: 1
+  originalSpeed: 0
+  colliding: 0
   unitPowerText: {fileID: 9198885493131115602}
+  tilemap: {fileID: 0}
+  yellowTile: {fileID: 11400000, guid: 1d5c17d11a27b9040b90d3bf068b3543, type: 2}
+  blackTile: {fileID: 11400000, guid: 81333d5d0cb55ed4ab2486c401721124, type: 2}
 --- !u!1 &5485847673227666348
 GameObject:
   m_ObjectHideFlags: 0

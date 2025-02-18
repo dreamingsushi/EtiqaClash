@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Units : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Units : MonoBehaviour
     public float originalSpeed;
     public bool colliding;
     [SerializeField] private TMP_Text unitPowerText;
+    private ColorTilesManager tileManager;
     public enum TeamColor
     {
         Yellow, Black
@@ -20,6 +22,7 @@ public class Units : MonoBehaviour
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
         unitPowerText.text = unitPower.ToString();
+        tileManager = FindAnyObjectByType<ColorTilesManager>();
     }
 
     void Update()
@@ -38,6 +41,8 @@ public class Units : MonoBehaviour
         {
             unitSpeed = originalSpeed;
         }
+
+        tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
     }
     private void MoveUnit()
     {
