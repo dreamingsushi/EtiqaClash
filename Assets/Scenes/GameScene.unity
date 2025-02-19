@@ -131,12 +131,12 @@ GameObject:
   - component: {fileID: 2255997}
   - component: {fileID: 2255996}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: 2nd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2255995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ RectTransform:
   m_GameObject: {fileID: 51412336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2938119, y: 0.345661, z: 0.345661}
+  m_LocalScale: {x: 0.3, y: 0.35, z: 0.345661}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96426394}
@@ -331,7 +331,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 215.20003, y: 42}
-  m_SizeDelta: {x: 213, y: 162}
+  m_SizeDelta: {x: 213, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &51412338
 MonoBehaviour:
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2173483237784345230, guid: 702a48b243750ff4abbaba555f0a8308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1419,7 +1419,7 @@ RectTransform:
   m_GameObject: {fileID: 465630587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2938119, y: 0.345661, z: 0.345661}
+  m_LocalScale: {x: 0.3, y: 0.35, z: 0.345661}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96426394}
@@ -1427,7 +1427,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 147.80003, y: 42}
-  m_SizeDelta: {x: 213, y: 162}
+  m_SizeDelta: {x: 213, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465630589
 MonoBehaviour:
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2173483237784345230, guid: 702a48b243750ff4abbaba555f0a8308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1993,7 +1993,7 @@ GameObject:
   - component: {fileID: 762489601}
   - component: {fileID: 762489600}
   m_Layer: 5
-  m_Name: Troop
+  m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2094,7 +2094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2738592549283395852, guid: 7478ddac32b28504e9136cc8be0afd78, type: 3}
+  m_Sprite: {fileID: -3752914879350546091, guid: e0202ba1ece785045aef7518b5dd9ecb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2676,7 +2676,7 @@ RectTransform:
   m_GameObject: {fileID: 1121412299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2938119, y: 0.345661, z: 0.345661}
+  m_LocalScale: {x: 0.3, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96426394}
@@ -2684,7 +2684,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 283.4772, y: 42}
-  m_SizeDelta: {x: 213, y: 162}
+  m_SizeDelta: {x: 213, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121412301
 MonoBehaviour:
@@ -2755,14 +2755,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 1, g: 0.83921576, b: 0.3137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 546210735114144736, guid: 640d4102c579dac40a73d1c054063410, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2879,12 +2879,12 @@ GameObject:
   - component: {fileID: 1379474795}
   - component: {fileID: 1379474794}
   m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Name: 3rd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1379474793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3445,12 +3445,12 @@ GameObject:
   - component: {fileID: 1643515111}
   - component: {fileID: 1643515110}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: 1st
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1643515109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4084,15 +4084,15 @@ RectTransform:
   m_GameObject: {fileID: 1926103047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2938119, y: 0.345661, z: 0.345661}
+  m_LocalScale: {x: 0.3, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96426394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 352.1, y: 42}
-  m_SizeDelta: {x: 213, y: 162}
+  m_AnchoredPosition: {x: 352, y: 42}
+  m_SizeDelta: {x: 213, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1926103049
 MonoBehaviour:
@@ -4163,14 +4163,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 1, g: 0.83921576, b: 0.3137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 546210735114144736, guid: 640d4102c579dac40a73d1c054063410, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4200,12 +4200,12 @@ GameObject:
   - component: {fileID: 1988516513}
   - component: {fileID: 1988516512}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 4th
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1988516511
 RectTransform:
   m_ObjectHideFlags: 0
