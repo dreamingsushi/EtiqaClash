@@ -1,6 +1,9 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 public class Units : MonoBehaviour
 {
@@ -11,15 +14,27 @@ public class Units : MonoBehaviour
     public float originalSpeed;
     public bool colliding;
     [SerializeField] private TMP_Text unitPowerText;
+    private ColorTilesManager tileManager;
     public enum TeamColor
     {
         Yellow, Black
-    }    
+    }
+
+    void Awake()
+    {
+        //rotation of inverted (player two)
+        if(!PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            transform.eulerAngles = new Vector3(0,0,180);
+        }
+    }
+
     private void Start()
     {
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
         unitPowerText.text = unitPower.ToString();
+        tileManager = FindAnyObjectByType<ColorTilesManager>();
     }
 
     void Update()
@@ -38,19 +53,38 @@ public class Units : MonoBehaviour
         {
             unitSpeed = originalSpeed;
         }
+
+        tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
     }
     private void MoveUnit()
     {
         Vector3 direction;
-        if (team == TeamColor.Yellow)
+
+        if(PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            direction = Vector3.up;
+            if (team == TeamColor.Yellow)
+            {
+                direction = Vector3.up;
+            }
+            else
+            {
+                direction = Vector3.down;
+            }
+            transform.position += direction * unitSpeed * Time.deltaTime;
         }
         else
         {
-            direction = Vector3.down;
+            if (team == TeamColor.Yellow)
+            {
+                direction = Vector3.down;
+            }
+            else
+            {
+                direction = Vector3.up;
+            }
+            transform.position += direction * unitSpeed * Time.deltaTime; 
         }
-        transform.position += direction * unitSpeed * Time.deltaTime;
+        
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
