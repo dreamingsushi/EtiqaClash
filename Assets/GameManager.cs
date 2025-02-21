@@ -1,3 +1,5 @@
+using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,11 +15,17 @@ public class GameManager : MonoBehaviour
     public GameObject unitPrefab;
     public float spawnOffset = 1.0f;
 
+    public GameObject gameplayParent;
+
     private ElixirBar elixirBar;
 
     void Start()
     {
         elixirBar = FindAnyObjectByType<ElixirBar>();
+        if(!PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            gameplayParent.transform.eulerAngles = new Vector3(0,0,180);
+        }
     }
 
     private void Update()
@@ -97,11 +105,31 @@ public class GameManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
+        if(PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            spawnOffset = 1;
+        }
+        else
+            spawnOffset = 2;
         // Calculate the spawn position (spawn above the lane)
         Vector3 spawnPosition = lane.transform.position + new Vector3(0, spawnOffset, 0);
         
         // Instantiate the unitPrefab at the calculated position
-        Instantiate(unitPrefab, spawnPosition, Quaternion.identity);
+        GameObject spawnedUnit = PhotonNetwork.Instantiate(unitPrefab.name, spawnPosition, Quaternion.identity);
+        
+
+        // if(spawnedUnit.GetPhotonView().IsMine)
+        // {
+            
+        //     spawnedUnit.GetComponent<Units>().team = Units.TeamColor.Yellow;
+        //     spawnedUnit.GetComponent<SpriteRenderer>().color = Color.yellow;
+        // }
+        // else 
+        // {
+            
+        //     spawnedUnit.GetComponent<Units>().team = Units.TeamColor.Black;
+        //     spawnedUnit.GetComponent<SpriteRenderer>().color = Color.black;
+        // }
     }
 
 

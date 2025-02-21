@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8504438059096753038}
   - component: {fileID: 120929491701902007}
+  - component: {fileID: -5445439174399374240}
   - component: {fileID: 4302350077410409042}
   - component: {fileID: 6030106031631016620}
   - component: {fileID: 3948789703579610801}
+  - component: {fileID: 7037099607588301763}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Unit
@@ -91,6 +93,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5445439174399374240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546652256657012542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 7037099607588301763}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!61 &4302350077410409042
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +207,22 @@ MonoBehaviour:
   originalSpeed: 0
   colliding: 0
   unitPowerText: {fileID: 9198885493131115602}
+--- !u!114 &7037099607588301763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546652256657012542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5485847673227666348
 GameObject:
   m_ObjectHideFlags: 0

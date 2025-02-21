@@ -24,7 +24,7 @@ public class ColorTilesManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(percentageAmount);
+        
         totalAmount = yellowAmount + blackAmount;
         if(PhotonNetwork.LocalPlayer.IsMasterClient)
         {

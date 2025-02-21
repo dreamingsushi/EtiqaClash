@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
+using Unity.Services.Matchmaker.Models;
 
-public class Units : MonoBehaviour
+public class Units : MonoBehaviourPunCallbacks
 {
     public TeamColor team;
     public int unitPower;
@@ -13,24 +14,27 @@ public class Units : MonoBehaviour
     private Rigidbody2D rb;
     public float originalSpeed;
     public bool colliding;
+
     [SerializeField] private TMP_Text unitPowerText;
     private ColorTilesManager tileManager;
+
     public enum TeamColor
     {
         Yellow, Black
     }
-
-    void Awake()
-    {
-        //rotation of inverted (player two)
-        if(!PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            transform.eulerAngles = new Vector3(0,0,180);
-        }
+    
+    public override void OnEnable() {
+        this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
     }
 
     private void Start()
     {
+        if(!photonView.IsMine)
+        {
+            GetComponent<Units>().team = Units.TeamColor.Black;
+            GetComponent<SpriteRenderer>().color = Color.black;
+        }
+
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
         unitPowerText.text = unitPower.ToString();
@@ -39,6 +43,11 @@ public class Units : MonoBehaviour
 
     void Update()
     {
+        if(photonView.IsMine)
+        {
+            this.gameObject.layer = 6;
+        }
+
         rb.mass = unitPower;
 
         unitPowerText.text = unitPower.ToString();
@@ -60,27 +69,35 @@ public class Units : MonoBehaviour
     {
         Vector3 direction;
 
-        if(PhotonNetwork.LocalPlayer.IsMasterClient)
+        if(photonView.IsMine)
         {
             if (team == TeamColor.Yellow)
             {
+                
                 direction = Vector3.up;
+                
             }
             else
             {
+                //GetComponent<SpriteRenderer>().color = Color.black;
                 direction = Vector3.down;
+                
             }
             transform.position += direction * unitSpeed * Time.deltaTime;
         }
-        else
+        else if(!photonView.IsMine)
         {
             if (team == TeamColor.Yellow)
             {
+                //GetComponent<SpriteRenderer>().color = Color.yellow;
                 direction = Vector3.down;
+                
             }
             else
             {
+                //GetComponent<SpriteRenderer>().color = Color.black;
                 direction = Vector3.up;
+                
             }
             transform.position += direction * unitSpeed * Time.deltaTime; 
         }
@@ -89,7 +106,8 @@ public class Units : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        colliding = true;
+        //need to check if colliding with enemy units or limit wall
+        colliding = true;    
     }
 
     private void OnCollisionExit2D(Collision2D collision)
