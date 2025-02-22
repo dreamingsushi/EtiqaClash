@@ -15,6 +15,8 @@ public class Units : MonoBehaviourPunCallbacks
     public float originalSpeed;
     public bool colliding;
 
+    public int increasedPower;
+
     [SerializeField] private TMP_Text unitPowerText;
     private ColorTilesManager tileManager;
 
@@ -47,12 +49,12 @@ public class Units : MonoBehaviourPunCallbacks
         {
             this.gameObject.layer = 6;
         }
-
+        
         rb.mass = unitPower;
-
-        unitPowerText.text = unitPower.ToString();
-
         MoveUnit();
+
+        //Show power to all
+        //photonView.RPC("SyncPower", RpcTarget.AllBuffered, increasedPower);
 
         if (colliding)
         {
@@ -113,5 +115,13 @@ public class Units : MonoBehaviourPunCallbacks
     private void OnCollisionExit2D(Collision2D collision)
     {
         colliding = false;
+    }
+
+    [PunRPC]
+    public void SyncPower(int power)
+    {
+        unitPower += power;
+        unitPowerText.text = unitPower.ToString();
+
     }
 }

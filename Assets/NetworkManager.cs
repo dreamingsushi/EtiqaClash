@@ -63,6 +63,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         connectingText.GetComponent<TMP_Text>().text = ("Matchmaking... " + PhotonNetwork.PlayerList.Length + "/2");
         if(PhotonNetwork.PlayerList.Length == 2)
         {
+            
             PhotonNetwork.LoadLevel("Network Test Scene");       
         }
     }

@@ -113,6 +113,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 7037099607588301763}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -206,6 +207,7 @@ MonoBehaviour:
   unitSpeed: 1
   originalSpeed: 0
   colliding: 0
+  increasedPower: 0
   unitPowerText: {fileID: 9198885493131115602}
 --- !u!114 &7037099607588301763
 MonoBehaviour:

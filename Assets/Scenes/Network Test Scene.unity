@@ -2105,6 +2105,8 @@ MonoBehaviour:
   lane5: {fileID: 384965055}
   unitPrefab: {fileID: 546652256657012542, guid: 1ee3a73554ecc5c4f9679ae078dee5ce, type: 3}
   spawnOffset: 1
+  powerupValue1: 1
+  speedupValue1: 1
   gameplayParent: {fileID: 1326913556}
 --- !u!4 &753721638
 Transform:
@@ -4957,7 +4959,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NaN
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

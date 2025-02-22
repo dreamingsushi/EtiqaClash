@@ -1,6 +1,7 @@
 using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;
+using Photon.Realtime;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,10 +16,18 @@ public class GameManager : MonoBehaviour
     public GameObject unitPrefab;
     public float spawnOffset = 1.0f;
 
+    [Header("Powerups settings")]
+    public int powerupValue1 = 1;
+    public int speedupValue1 = 1;
+
     public GameObject gameplayParent;
 
     private ElixirBar elixirBar;
 
+    void Awake()
+    {
+        Debug.Log("Player "+ PhotonNetwork.LocalPlayer.ActorNumber + " has joined the game.");
+    }
     void Start()
     {
         elixirBar = FindAnyObjectByType<ElixirBar>();
@@ -26,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             gameplayParent.transform.eulerAngles = new Vector3(0,0,180);
         }
+        
     }
 
     private void Update()
@@ -58,7 +68,9 @@ public class GameManager : MonoBehaviour
         {
             if (elixirBar.curElixir >= 2 &&applyingPower)
             {
-                ApplyPower(unitCollider);
+                
+                ApplyPower(unitCollider, powerupValue1);
+                unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncPower", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedPower);
                 applyingPower = false;
             }
             if (elixirBar.curElixir >= 2 &&applyingSpeed)
@@ -107,7 +119,7 @@ public class GameManager : MonoBehaviour
     {
         if(PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            spawnOffset = 1;
+            spawnOffset = 2;
         }
         else
             spawnOffset = 2;
@@ -133,9 +145,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void ApplyPower(Collider2D unit)
+    void ApplyPower(Collider2D unit, int powerValue)
     {
-        unit.GetComponent<Units>().unitPower += 1;
+        unit.GetComponent<Units>().increasedPower = powerValue;
         elixirBar.curElixir -= 2;
     }
 
