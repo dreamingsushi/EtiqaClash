@@ -26,6 +26,7 @@ public class ColorTilesManager : MonoBehaviour
     void Update()
     {
         
+        
         totalAmount = yellowAmount + blackAmount;
         if(PhotonNetwork.LocalPlayer.ActorNumber == 1)
         {
@@ -67,16 +68,14 @@ public class ColorTilesManager : MonoBehaviour
         {
             tilemap.SetTile(tilePosition, yellowTile);
             tilemap.RefreshTile(tilePosition);
-            yellowAmount++;
-            blackAmount--;
+          
             
         }
         else if(!isYellowTeam && currentTile == yellowTile)
         {
             tilemap.SetTile(tilePosition, blackTile);
             tilemap.RefreshTile(tilePosition);
-            blackAmount++;
-            yellowAmount--;
+           
         }
 
     }  

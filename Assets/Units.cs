@@ -16,6 +16,7 @@ public class Units : MonoBehaviourPunCallbacks
     public bool colliding;
 
     public int increasedPower;
+    public int increasedSpeed;
 
     [SerializeField] private TMP_Text unitPowerText;
     private ColorTilesManager tileManager;
@@ -25,17 +26,33 @@ public class Units : MonoBehaviourPunCallbacks
         Yellow, Black
     }
     
-    public override void OnEnable() {
+    private void Awake() {
+        if(!photonView.IsMine)
+        {
+            GetComponent<Units>().team = TeamColor.Black;
+            GetComponent<SpriteRenderer>().color = Color.black;
+            
+        }
         this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
+    }
+    public override void OnEnable() {
+        if(photonView.IsMine)
+        {
+            this.gameObject.layer = 6;
+        }
+
+        if(photonView.IsMine)
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+        else
+            transform.eulerAngles = new Vector3(0,0,180);
+     
     }
 
     private void Start()
     {
-        if(!photonView.IsMine)
-        {
-            GetComponent<Units>().team = Units.TeamColor.Black;
-            GetComponent<SpriteRenderer>().color = Color.black;
-        }
+        
 
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
@@ -45,16 +62,12 @@ public class Units : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if(photonView.IsMine)
-        {
-            this.gameObject.layer = 6;
-        }
+        
         
         rb.mass = unitPower;
         MoveUnit();
 
-        //Show power to all
-        //photonView.RPC("SyncPower", RpcTarget.AllBuffered, increasedPower);
+        
 
         if (colliding)
         {
@@ -65,14 +78,20 @@ public class Units : MonoBehaviourPunCallbacks
             unitSpeed = originalSpeed;
         }
 
-        tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
+        
     }
+
+    private void LateUpdate() {
+        if(this.gameObject.transform.parent == FindAnyObjectByType<GameplayTest>().transform)
+            tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
+    }
+
     private void MoveUnit()
     {
         Vector3 direction;
 
-        if(photonView.IsMine)
-        {
+        // if(photonView.IsMine)
+        // {
             if (team == TeamColor.Yellow)
             {
                 
@@ -81,28 +100,27 @@ public class Units : MonoBehaviourPunCallbacks
             }
             else
             {
-                //GetComponent<SpriteRenderer>().color = Color.black;
                 direction = Vector3.down;
                 
             }
             transform.position += direction * unitSpeed * Time.deltaTime;
-        }
-        else if(!photonView.IsMine)
-        {
-            if (team == TeamColor.Yellow)
-            {
-                //GetComponent<SpriteRenderer>().color = Color.yellow;
-                direction = Vector3.down;
+        // }
+        // else if(!photonView.IsMine)
+        // {
+        //     if (team == TeamColor.Yellow)
+        //     {
+        //         //GetComponent<SpriteRenderer>().color = Color.yellow;
+        //         direction = Vector3.up;
                 
-            }
-            else
-            {
-                //GetComponent<SpriteRenderer>().color = Color.black;
-                direction = Vector3.up;
+        //     }
+        //     else
+        //     {
+        //         //GetComponent<SpriteRenderer>().color = Color.black;
+        //         direction = Vector3.down;
                 
-            }
-            transform.position += direction * unitSpeed * Time.deltaTime; 
-        }
+        //     }
+        //     transform.position += direction * unitSpeed * Time.deltaTime; 
+        // }
         
 
     }
@@ -122,6 +140,14 @@ public class Units : MonoBehaviourPunCallbacks
     {
         unitPower += power;
         unitPowerText.text = unitPower.ToString();
+
+    }
+
+    [PunRPC]
+    public void SyncSpeed(int speed)
+    {
+        originalSpeed += speed;
+        
 
     }
 }

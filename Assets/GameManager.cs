@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public BoxCollider2D lane4;
     public BoxCollider2D lane5;
     public GameObject unitPrefab;
-    public float spawnOffset = 1.0f;
+    public float spawnOffset = 2.0f;
 
     [Header("Powerups settings")]
     public int powerupValue1 = 1;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Player "+ PhotonNetwork.LocalPlayer.ActorNumber + " has joined the game.");
+        print("Player "+ PhotonNetwork.LocalPlayer.ActorNumber + " has joined the game.");
     }
     void Start()
     {
@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
             }
             if (elixirBar.curElixir >= 2 &&applyingSpeed)
             {
-                ApplySpeed(unitCollider);
+                ApplySpeed(unitCollider, speedupValue1);
+                unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncSpeed", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedSpeed);
                 applyingSpeed = false;
             }
         
@@ -117,31 +118,17 @@ public class GameManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        if(PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            spawnOffset = 2;
-        }
-        else
-            spawnOffset = 2;
+        
+        spawnOffset = 2;
+        
+
         // Calculate the spawn position (spawn above the lane)
         Vector3 spawnPosition = lane.transform.position + new Vector3(0, spawnOffset, 0);
         
         // Instantiate the unitPrefab at the calculated position
-        GameObject spawnedUnit = PhotonNetwork.Instantiate(unitPrefab.name, spawnPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(unitPrefab.name, spawnPosition, Quaternion.identity);
         
 
-        // if(spawnedUnit.GetPhotonView().IsMine)
-        // {
-            
-        //     spawnedUnit.GetComponent<Units>().team = Units.TeamColor.Yellow;
-        //     spawnedUnit.GetComponent<SpriteRenderer>().color = Color.yellow;
-        // }
-        // else 
-        // {
-            
-        //     spawnedUnit.GetComponent<Units>().team = Units.TeamColor.Black;
-        //     spawnedUnit.GetComponent<SpriteRenderer>().color = Color.black;
-        // }
     }
 
 
@@ -151,9 +138,9 @@ public class GameManager : MonoBehaviour
         elixirBar.curElixir -= 2;
     }
 
-    void ApplySpeed(Collider2D unit)
+    void ApplySpeed(Collider2D unit, int speedValue)
     {
-        unit.GetComponent<Units>().originalSpeed += 1;
+        unit.GetComponent<Units>().increasedSpeed = speedValue;
         elixirBar.curElixir -= 2;
     }
 
