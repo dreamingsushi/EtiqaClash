@@ -40,9 +40,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                DetectClick(touch.position);
+            }
+        }
         if (Input.GetMouseButtonDown(0))
         {
-            DetectClick();
+            DetectClick(Input.mousePosition);
         }
     }
 
@@ -58,48 +66,45 @@ public class GameManager : MonoBehaviour
     {
         applyingSpeed = true;
     }
-    void DetectClick()
+    void DetectClick(Vector2 inputPosition)
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Collider2D unitCollider = Physics2D.OverlapPoint(mousePosition);
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(inputPosition);
+        Collider2D unitCollider = Physics2D.OverlapPoint(worldPosition);
 
         if (unitCollider != null && unitCollider.CompareTag("Unit"))
         {
-            if (elixirBar.curElixir >= 2 &&applyingPower)
+            if (elixirBar.curElixir >= 2 && applyingPower)
             {
-                
                 ApplyPower(unitCollider, powerupValue1);
                 unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncPower", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedPower);
                 applyingPower = false;
             }
-            if (elixirBar.curElixir >= 2 &&applyingSpeed)
+            if (elixirBar.curElixir >= 2 && applyingSpeed)
             {
                 ApplySpeed(unitCollider, speedupValue1);
                 unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncSpeed", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedSpeed);
                 applyingSpeed = false;
             }
-        
-        return;
+            return;
         }
 
-        if (lane1.OverlapPoint(mousePosition))
+        if (lane1.OverlapPoint(worldPosition))
         {
             OnLaneClicked(1, lane1);
         }
-        else if (lane2.OverlapPoint(mousePosition))
+        else if (lane2.OverlapPoint(worldPosition))
         {
             OnLaneClicked(2, lane2);
         }
-        else if (lane3.OverlapPoint(mousePosition))
+        else if (lane3.OverlapPoint(worldPosition))
         {
             OnLaneClicked(3, lane3);
         }
-        else if (lane4.OverlapPoint(mousePosition))
+        else if (lane4.OverlapPoint(worldPosition))
         {
             OnLaneClicked(4, lane4);
         }
-        else if (lane5.OverlapPoint(mousePosition))
+        else if (lane5.OverlapPoint(worldPosition))
         {
             OnLaneClicked(5, lane5);
         }

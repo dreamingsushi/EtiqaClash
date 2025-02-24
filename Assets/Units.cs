@@ -21,6 +21,8 @@ public class Units : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text unitPowerText;
     private ColorTilesManager tileManager;
 
+    private Animator anim;
+
     public enum TeamColor
     {
         Yellow, Black
@@ -31,7 +33,7 @@ public class Units : MonoBehaviourPunCallbacks
         {
             GetComponent<Units>().team = TeamColor.Black;
             GetComponent<SpriteRenderer>().color = Color.grey;
-            
+            GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
         this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
     }
@@ -53,7 +55,7 @@ public class Units : MonoBehaviourPunCallbacks
     private void Start()
     {
         
-
+        anim = GetComponent<Animator>();
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
         unitPowerText.text = unitPower.ToString();
@@ -63,7 +65,8 @@ public class Units : MonoBehaviourPunCallbacks
     void Update()
     {
         
-        
+        SwitchAnim();
+
         rb.mass = unitPower;
         MoveUnit();
 
@@ -122,6 +125,25 @@ public class Units : MonoBehaviourPunCallbacks
         //     transform.position += direction * unitSpeed * Time.deltaTime; 
         // }
         
+
+    }
+
+    private void SwitchAnim()
+    {
+        if (team == TeamColor.Black && colliding)
+        {
+            anim.Play("BeeAngry");
+            
+        }
+        else if (team == TeamColor.Black && !colliding)
+        {
+            anim.Play("BeeFront");
+        }
+        else if (team == TeamColor.Yellow)
+        {
+            anim.Play("BeeBack");
+        }
+
 
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Collections.Generic;
 using TMPro;
 using Photon.Pun;
 
@@ -18,31 +17,38 @@ public class ColorTilesManager : MonoBehaviour
 
     void Start()
     {
-        
-        yellowAmount = 0;
-        blackAmount = 0;   
+        CountTiles(); // Count existing tiles at the start
     }
 
     void Update()
     {
-        
-        
         totalAmount = yellowAmount + blackAmount;
-        if(PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        if (totalAmount > 0)
         {
-            percentageAmount = (float)yellowAmount/totalAmount*100;
-            percentageAmount = Mathf.Round(percentageAmount*10.0f)*0.1f;
-            
+            percentageAmount = (float)yellowAmount / totalAmount * 100;
+            percentageAmount = Mathf.Round(percentageAmount * 10.0f) * 0.1f;
         }
         else
         {
-            percentageAmount = (float)yellowAmount/totalAmount*100;
-            percentageAmount = Mathf.Round(percentageAmount*10.0f)*0.1f;
-            
+            percentageAmount = 0;
         }
 
-        tilesCount.color = new Color(1,0.9594803f,0.7528302f);
-        tilesCount.text = percentageAmount.ToString() + "%";
+        tilesCount.color = new Color(1, 0.9594803f, 0.7528302f);
+        tilesCount.text = percentageAmount.ToString("F1") + "%";
+    }
+
+    void CountTiles()
+    {
+        yellowAmount = 0;
+        blackAmount = 0;
+
+        BoundsInt bounds = tilemap.cellBounds;
+        foreach (Vector3Int pos in bounds.allPositionsWithin)
+        {
+            TileBase tile = tilemap.GetTile(pos);
+            if (tile == yellowTile) yellowAmount++;
+            if (tile == blackTile) blackAmount++;
+        }
     }
 
     public void ChangeTile(Vector3 unitPosition, bool isYellowTeam)
@@ -50,33 +56,19 @@ public class ColorTilesManager : MonoBehaviour
         Vector3Int tilePosition = tilemap.WorldToCell(unitPosition);
         TileBase currentTile = tilemap.GetTile(tilePosition);
 
-        if (isYellowTeam && (currentTile != yellowTile || currentTile != blackTile))
+        if (isYellowTeam)
         {
+            if (currentTile == blackTile) blackAmount--; // Reduce black count if converting
+            if (currentTile != yellowTile) yellowAmount++; // Increase yellow count only if different
             tilemap.SetTile(tilePosition, yellowTile);
-            tilemap.RefreshTile(tilePosition);
-            yellowAmount++;
-            
         }
-        else if (!isYellowTeam && (currentTile != yellowTile || currentTile != blackTile))
+        else
         {
+            if (currentTile == yellowTile) yellowAmount--; // Reduce yellow count if converting
+            if (currentTile != blackTile) blackAmount++; // Increase black count only if different
             tilemap.SetTile(tilePosition, blackTile);
-            tilemap.RefreshTile(tilePosition);
-            blackAmount++;
         }
 
-        if(isYellowTeam && currentTile == blackTile)
-        {
-            tilemap.SetTile(tilePosition, yellowTile);
-            tilemap.RefreshTile(tilePosition);
-          
-            
-        }
-        else if(!isYellowTeam && currentTile == yellowTile)
-        {
-            tilemap.SetTile(tilePosition, blackTile);
-            tilemap.RefreshTile(tilePosition);
-           
-        }
-
-    }  
+        tilemap.RefreshTile(tilePosition);
+    }
 }
