@@ -5,6 +5,7 @@ using UnityEngine.Animations;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
 using Unity.Services.Matchmaker.Models;
+using System.Collections;
 
 public class Units : MonoBehaviourPunCallbacks
 {
@@ -20,7 +21,7 @@ public class Units : MonoBehaviourPunCallbacks
 
     [SerializeField] private TMP_Text unitPowerText;
     private ColorTilesManager tileManager;
-
+    public bool canTile;
     private Animator anim;
 
     public enum TeamColor
@@ -34,14 +35,18 @@ public class Units : MonoBehaviourPunCallbacks
             GetComponent<Units>().team = TeamColor.Black;
             GetComponent<SpriteRenderer>().color = Color.grey;
             GetComponent<SpriteRenderer>().sortingOrder = 1;
+            GetComponentInChildren<Canvas>().sortingOrder = 1;
+            GetComponentInChildren<Canvas>().transform.eulerAngles = new Vector3(0,0,180);
         }
         this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
     }
     public override void OnEnable() {
-        if(photonView.IsMine)
+        if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine || PhotonNetwork.LocalPlayer.ActorNumber != 1 && !photonView.IsMine)
         {
             this.gameObject.layer = 6;
         }
+        else if(PhotonNetwork.LocalPlayer.ActorNumber != 1 && photonView.IsMine || PhotonNetwork.LocalPlayer.ActorNumber == 1 && !photonView.IsMine)
+            this.gameObject.layer = 7;
 
         if(photonView.IsMine)
         {
@@ -81,12 +86,23 @@ public class Units : MonoBehaviourPunCallbacks
             unitSpeed = originalSpeed;
         }
 
+        if(canTile)
+        {
+            StartCoroutine(TilePainting());
+        }
         
     }
 
     private void LateUpdate() {
-        if(this.gameObject.transform.parent == FindAnyObjectByType<GameplayTest>().transform)
-            tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
+        // if(this.gameObject.transform.parent == FindAnyObjectByType<GameplayTest>().transform)
+        //     tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
+        
+    }
+
+    public IEnumerator TilePainting()
+    {
+        yield return new WaitForSeconds(0.1f);
+        tileManager.ChangeTile(transform.position, team == TeamColor.Yellow);
     }
 
     private void MoveUnit()
@@ -155,6 +171,19 @@ public class Units : MonoBehaviourPunCallbacks
     private void OnCollisionExit2D(Collision2D collision)
     {
         colliding = false;
+    }
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.gameObject.name == "StartTiling")
+        {
+            canTile = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.name == "StartTiling")
+        {
+            canTile = false;
+        }
     }
 
     [PunRPC]

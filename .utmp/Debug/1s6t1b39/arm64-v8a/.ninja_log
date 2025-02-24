@@ -1,0 +1,23 @@
+# ninja log v5
+19	4722	7621169747020723	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2198c959044a562a
+147	1266	7621169710730894	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	5ce6461e3671c612
+43	4578	7621169746023000	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	35a161d61608beef
+1354	2798	7621169725399407	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1s6t1b39/obj/arm64-v8a/libswappywrapper.so	756d4d0054f305af
+30	4180	7621169741867548	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ba7697ce1f9c1215
+104	4088	7621169740351832	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a5e29db61dbcccc9
+130	4149	7621169740983107	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d711d59d43cc1dbe
+3	4122	7621169739990886	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ae33afafa5c618a5
+56	4144	7621169739443826	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5d8c6cf80ea69dcd
+70	4381	7621169743908696	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	971dcf241b89d85f
+4722	5023	7621169750543564	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1s6t1b39/obj/arm64-v8a/libgame.so	dadca33df1edbb05
+111	435	7621177781568931	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	5ce6461e3671c612
+436	1236	7621177789604156	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1s6t1b39/obj/arm64-v8a/libswappywrapper.so	756d4d0054f305af
+94	1941	7621177796503846	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5d8c6cf80ea69dcd
+43	1948	7621177796594256	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ae33afafa5c618a5
+26	1961	7621177796689516	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	35a161d61608beef
+86	1975	7621177796845186	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a5e29db61dbcccc9
+102	2000	7621177797096939	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	d711d59d43cc1dbe
+52	2058	7621177797739348	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ba7697ce1f9c1215
+79	2180	7621177799017838	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	971dcf241b89d85f
+58	2262	7621177799744381	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2198c959044a562a
+2263	2454	7621177801767064	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1s6t1b39/obj/arm64-v8a/libgame.so	dadca33df1edbb05

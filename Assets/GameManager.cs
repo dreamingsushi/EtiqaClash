@@ -2,6 +2,7 @@ using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;
 using Photon.Realtime;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -124,7 +125,7 @@ public class GameManager : MonoBehaviour
     void SpawnUnitAbove(BoxCollider2D lane)
     {
         
-        spawnOffset = 2;
+        spawnOffset = 0.5f;
         
 
         // Calculate the spawn position (spawn above the lane)
@@ -135,6 +136,8 @@ public class GameManager : MonoBehaviour
         
 
     }
+
+    
 
 
     void ApplyPower(Collider2D unit, int powerValue)
