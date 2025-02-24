@@ -636,12 +636,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 400, y: 300}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.3
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1470,6 +1470,8 @@ MonoBehaviour:
   unitSpeed: 5
   originalSpeed: 0
   colliding: 0
+  increasedPower: 0
+  increasedSpeed: 0
   unitPowerText: {fileID: 862195613}
 --- !u!50 &698229274
 Rigidbody2D:
@@ -1654,6 +1656,9 @@ MonoBehaviour:
   lane5: {fileID: 384965055}
   unitPrefab: {fileID: 546652256657012542, guid: 0a0ede1e5a4def94b911677ec16fd069, type: 3}
   spawnOffset: 1
+  powerupValue1: 1
+  speedupValue1: 1
+  gameplayParent: {fileID: 0}
 --- !u!4 &753721638
 Transform:
   m_ObjectHideFlags: 0
@@ -1851,6 +1856,7 @@ MonoBehaviour:
   tilemap: {fileID: 767260522}
   yellowTile: {fileID: 11400000, guid: 1d5c17d11a27b9040b90d3bf068b3543, type: 2}
   blackTile: {fileID: 11400000, guid: 81333d5d0cb55ed4ab2486c401721124, type: 2}
+  tilesCount: {fileID: 0}
 --- !u!19719996 &767260520
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -3675,6 +3681,8 @@ MonoBehaviour:
   unitSpeed: 4
   originalSpeed: 0
   colliding: 0
+  increasedPower: 0
+  increasedSpeed: 0
   unitPowerText: {fileID: 1774400170}
 --- !u!50 &1692052218
 Rigidbody2D:
