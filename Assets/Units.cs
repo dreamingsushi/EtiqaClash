@@ -20,6 +20,7 @@ public class Units : MonoBehaviourPunCallbacks
 
     [SerializeField] private TMP_Text unitPowerText;
     private ColorTilesManager tileManager;
+    private Animator anim;
 
     public enum TeamColor
     {
@@ -31,6 +32,7 @@ public class Units : MonoBehaviourPunCallbacks
         {
             GetComponent<Units>().team = TeamColor.Black;
             GetComponent<SpriteRenderer>().color = Color.black;
+            anim.Play("BeeFront");
             
         }
         this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
@@ -52,8 +54,7 @@ public class Units : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        
-
+        anim = GetComponent<Animator>();
         originalSpeed = unitSpeed;
         rb = GetComponent<Rigidbody2D>();
         unitPowerText.text = unitPower.ToString();
@@ -67,7 +68,14 @@ public class Units : MonoBehaviourPunCallbacks
         rb.mass = unitPower;
         MoveUnit();
 
-        
+        if (colliding && team == TeamColor.Black)
+        {
+            anim.Play("beefront2");
+        }
+        else if (!colliding && team == TeamColor.Black)
+        {
+            anim.Play("BeeFront");
+        }
 
         if (colliding)
         {
