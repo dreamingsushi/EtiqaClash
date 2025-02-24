@@ -30,7 +30,7 @@ public class Units : MonoBehaviourPunCallbacks
         if(!photonView.IsMine)
         {
             GetComponent<Units>().team = TeamColor.Black;
-            GetComponent<SpriteRenderer>().color = Color.black;
+            GetComponent<SpriteRenderer>().color = Color.grey;
             
         }
         this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
