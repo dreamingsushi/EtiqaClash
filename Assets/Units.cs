@@ -34,8 +34,8 @@ public class Units : MonoBehaviourPunCallbacks
         {
             GetComponent<Units>().team = TeamColor.Black;
             GetComponent<SpriteRenderer>().color = Color.grey;
-            GetComponent<SpriteRenderer>().sortingOrder = 1;
-            GetComponentInChildren<Canvas>().sortingOrder = 1;
+            GetComponent<SpriteRenderer>().sortingOrder = 3;
+            GetComponentInChildren<Canvas>().sortingOrder = 10;
             GetComponentInChildren<Canvas>().transform.eulerAngles = new Vector3(0,0,180);
         }
         this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
