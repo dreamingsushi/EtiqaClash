@@ -13,7 +13,7 @@ public class ColorTilesManager : MonoBehaviour
     int yellowAmount;
     int blackAmount;
     int totalAmount;
-    float percentageAmount;
+    public float percentageAmount;
 
     void Start()
     {

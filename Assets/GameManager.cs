@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Photon.Realtime;
 using System.Collections;
+using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     public BoxCollider2D lane5;
     public GameObject unitPrefab;
     public float spawnOffset = 2.0f;
+    public GameObject openingCutsceneText;
 
     [Header("Powerups settings")]
     public int powerupValue1 = 1;
@@ -31,16 +34,25 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        
         elixirBar = FindAnyObjectByType<ElixirBar>();
+        elixirBar.enabled = false;
         if(!PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             gameplayParent.transform.eulerAngles = new Vector3(0,0,180);
-        }
+        }   
+
         
     }
 
     private void Update()
     {
+        if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false)
+        {
+            elixirBar.enabled = true;
+            openingCutsceneText.transform.parent.gameObject.SetActive(false);
+        }
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
