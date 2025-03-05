@@ -29,6 +29,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void GoToTutorial()
     {
+        
         SceneManager.LoadScene("Tutorial");
     }
 

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameplayParent;
 
     public GameObject countdownTimerText;
-    private float timeLeft = 10f;
+    private float timeLeft = 66f;
     
     private ColorTilesManager colorManager;
 
