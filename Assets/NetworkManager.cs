@@ -3,6 +3,7 @@ using Photon.Pun;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -11,7 +12,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         connectingText.SetActive(false);
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public void OnPlayGameButtonPressed()
@@ -24,6 +25,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             
         }
 
+    }
+
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 
     public override void OnConnected()
@@ -55,6 +61,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
  
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions); 
     }
+
+    
 
 
 

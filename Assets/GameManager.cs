@@ -5,6 +5,8 @@ using Photon.Realtime;
 using System.Collections;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +28,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameplayParent;
 
+    public GameObject countdownTimerText;
+    private float timeLeft = 10f;
+    
+    private ColorTilesManager colorManager;
+
     private ElixirBar elixirBar;
 
     void Awake()
@@ -42,6 +49,7 @@ public class GameManager : MonoBehaviour
             gameplayParent.transform.eulerAngles = new Vector3(0,0,180);
         }   
 
+        colorManager = FindAnyObjectByType<ColorTilesManager>();
         
     }
 
@@ -65,6 +73,8 @@ public class GameManager : MonoBehaviour
         {
             DetectClick(Input.mousePosition);
         }
+
+        TimerCountdown();
     }
 
     public void SpawningTroop()
@@ -164,4 +174,25 @@ public class GameManager : MonoBehaviour
         elixirBar.curElixir -= 2;
     }
 
+    public void TimerCountdown()
+    {
+        if(SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            return;
+        }
+        else
+        {
+            timeLeft -= Time.deltaTime;
+            if(timeLeft < 0)
+            {
+                if(colorManager.percentageAmount > 50f)
+                {
+                    SceneManager.LoadScene("Victory");
+                }
+                else
+                    SceneManager.LoadScene("Defeat");
+            }
+            countdownTimerText.GetComponent<TMP_Text>().text = timeLeft.ToString("F1");
+        }   
+    }
 }
