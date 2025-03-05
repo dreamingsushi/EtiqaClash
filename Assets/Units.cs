@@ -33,7 +33,7 @@ public class Units : MonoBehaviourPunCallbacks
         if(!photonView.IsMine)
         {
             GetComponent<Units>().team = TeamColor.Black;
-            GetComponent<SpriteRenderer>().color = Color.grey;
+            //GetComponent<SpriteRenderer>().color = Color.grey;
             GetComponent<SpriteRenderer>().sortingOrder = 3;
             GetComponentInChildren<Canvas>().sortingOrder = 10;
             GetComponentInChildren<Canvas>().transform.eulerAngles = new Vector3(0,0,180);
