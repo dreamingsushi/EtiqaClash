@@ -33,7 +33,12 @@ public class TutorialManager : MonoBehaviour
     public GameObject tutorialCanvas;
     public List<GameObject> tutorialObjects;
     public GameObject tutorialMsg;
+    public GameObject enemyUnitTutorial;
+    public GameObject blocker;
+    public GameObject endTutorial;
     private int currentTutorial = 0;
+    private bool tutorialCutscene;
+    private bool showLastTutorial = true;
 
     private float timeLeft = 66f;
     
@@ -59,7 +64,10 @@ public class TutorialManager : MonoBehaviour
 
         tutorialObjects[0].SetActive(true);
         tutorialCanvas.SetActive(false);
-        
+        enemyUnitTutorial.SetActive(false);
+        endTutorial.SetActive(false);
+        tutorialCutscene = true;
+    
     }
 
     private void Update()
@@ -68,35 +76,57 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialCanvas.SetActive(true);
             openingCutsceneText.transform.parent.gameObject.SetActive(false);
-        }
-
-        if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false && tutorialEnded)
-        {
-            elixirBar.enabled = true;
             
         }
+
+        
+        // if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false && tutorialEnded)
+        // {
+        //     elixirBar.enabled = true;
+            
+        // }
 
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-                StartTutorialPhase();
+                if(!tutorialEnded)
+                {
+                    Time.timeScale = 1f;
+                    StartTutorialPhase();
+                }
+                
                 DetectClick(touch.position);
             }
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            StartTutorialPhase();
+            if(!tutorialEnded)
+            {
+                Time.timeScale = 1f;
+                StartTutorialPhase();
+            }
             DetectClick(Input.mousePosition);
         }
 
         TimerCountdown();
+
+        if(enemyUnitTutorial.activeInHierarchy && showLastTutorial)
+        {
+            showLastTutorial = false;
+            StartTutorialPhase();
+        }
     }
 
     public void SpawningTroop()
     {
         selecting = true;
+        if(tutorialEnded == false)
+        {
+            tutorialCutscene = true;
+            StartTutorialPhase();
+        }
     }
     public void ApplyingPower()
     {
@@ -154,6 +184,12 @@ public class TutorialManager : MonoBehaviour
     {
         if (elixirBar.curElixir >= 2 && selecting)
         {
+            if(!tutorialEnded)
+            {
+                tutorialCutscene = true;
+                StartTutorialPhase();
+            }
+            
             Debug.Log("Lane " + laneNumber + " clicked!");
             SpawnUnitAbove(lane);
             elixirBar.curElixir -= 2;
@@ -194,23 +230,105 @@ public class TutorialManager : MonoBehaviour
         elixirBar.curElixir -= 2;
     }
     void StartTutorialPhase()
-    {
-        currentTutorial++;
-        foreach(GameObject obj in tutorialObjects)
+    {   
+
+        if(tutorialCutscene)
         {
-            obj.SetActive(false);
+            foreach(GameObject obj in tutorialObjects)
+            {
+                obj.SetActive(false);
+            }
+            
+            if(tutorialObjects[currentTutorial].name == "enemy")
+            {
+                Time.timeScale = 1f;
+                tutorialCutscene = false;
+                tutorialEnded = true;
+                StartCoroutine(EndTutorial());
+                return;
+            }
+
+            if(tutorialEnded)
+            {
+                return;
+            }
+            else
+            {
+                currentTutorial++;
+                tutorialObjects[currentTutorial].SetActive(true);
+            }
+            
+            if(currentTutorial > 2)
+            {
+                tutorialMsg.SetActive(false);
+                
+            }
+
+            if(tutorialObjects[currentTutorial].name == "Arrow")
+            {
+                elixirBar.enabled = true;
+                elixirBar.maxElixir = 2;
+                elixirBar.curElixir = 2;
+                tutorialCutscene = false;
+                blocker.SetActive(false);
+            }
+
+            if(tutorialObjects[currentTutorial- 1].name == "Arrow")
+            {
+                tutorialCutscene = false;
+            }
+
+            if(tutorialObjects[currentTutorial].name == "timestop")
+            {
+                Time.timeScale = 0f;
+                
+            }
+            
+
+            if(tutorialObjects[currentTutorial].name == "silhouette 5")
+            {
+                
+                elixirBar.maxElixir = 10;
+                
+                StartCoroutine(EnemyTutorial());
+                
+            }
+            if(tutorialObjects[currentTutorial].name == "placeholder")
+            {
+                
+                tutorialCutscene = false;
+                
+            }
+            
+            
         }
 
-        tutorialObjects[currentTutorial].SetActive(true);
-        if(currentTutorial > 2)
+        if(enemyUnitTutorial.activeInHierarchy)
         {
-            tutorialMsg.SetActive(false);
+            Time.timeScale = 0f;
+            tutorialObjects[tutorialObjects.Count-1].SetActive(true);
+            tutorialCutscene = true;
+            
         }
+
         
-        if(currentTutorial == tutorialObjects.Count)
-        {
-            tutorialEnded = true;
-        }
+    }
+
+    public IEnumerator EnemyTutorial()
+    {
+        yield return new WaitForSeconds(3.8f);
+        enemyUnitTutorial.SetActive(true);
+
+    }
+
+    public IEnumerator EndTutorial()
+    {
+        yield return new WaitForSeconds(5f);
+        
+        endTutorial.SetActive(true);
+        yield return new WaitForSeconds(6f);
+
+        endTutorial.SetActive(false);
     }
 
     public void TimerCountdown()

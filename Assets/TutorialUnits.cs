@@ -155,7 +155,7 @@ public class TutorialUnits : MonoBehaviourPunCallbacks
     {
         //need to check if colliding with enemy units or limit wall
         increasedPower = unitPower;
-        unitPower = 1;
+        //unitPower = 1;
         colliding = true;    
     }
 
