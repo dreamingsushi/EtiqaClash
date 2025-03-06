@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -27,24 +28,37 @@ public class TutorialManager : MonoBehaviour
     public int speedupValue1 = 1;
 
     public GameObject countdownTimerText;
+
+    [Header("Tutorial")]
+    public GameObject tutorialCanvas;
+    public List<GameObject> tutorialObjects;
+    public GameObject tutorialMsg;
+    private int currentTutorial = 0;
+
     private float timeLeft = 66f;
     
     private ColorTilesManager colorManager;
 
     private ElixirBar elixirBar;
+    private bool tutorialEnded;
 
-    void Awake()
-    {
-        
-    }
     void Start()
     {
-        
+
+        currentTutorial = 0;
         elixirBar = FindAnyObjectByType<ElixirBar>();
         elixirBar.enabled = false;
          
 
         colorManager = FindAnyObjectByType<ColorTilesManager>();
+
+        foreach(GameObject obj in tutorialObjects)
+        {
+            obj.SetActive(false);
+        }
+
+        tutorialObjects[0].SetActive(true);
+        tutorialCanvas.SetActive(false);
         
     }
 
@@ -52,8 +66,14 @@ public class TutorialManager : MonoBehaviour
     {
         if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false)
         {
-            elixirBar.enabled = true;
+            tutorialCanvas.SetActive(true);
             openingCutsceneText.transform.parent.gameObject.SetActive(false);
+        }
+
+        if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false && tutorialEnded)
+        {
+            elixirBar.enabled = true;
+            
         }
 
         if (Input.touchCount > 0)
@@ -61,11 +81,13 @@ public class TutorialManager : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
+                StartTutorialPhase();
                 DetectClick(touch.position);
             }
         }
-        if (Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(0))
         {
+            StartTutorialPhase();
             DetectClick(Input.mousePosition);
         }
 
@@ -170,6 +192,25 @@ public class TutorialManager : MonoBehaviour
         unit.GetComponent<TutorialUnits>().originalSpeed ++;
 
         elixirBar.curElixir -= 2;
+    }
+    void StartTutorialPhase()
+    {
+        currentTutorial++;
+        foreach(GameObject obj in tutorialObjects)
+        {
+            obj.SetActive(false);
+        }
+
+        tutorialObjects[currentTutorial].SetActive(true);
+        if(currentTutorial > 2)
+        {
+            tutorialMsg.SetActive(false);
+        }
+        
+        if(currentTutorial == tutorialObjects.Count)
+        {
+            tutorialEnded = true;
+        }
     }
 
     public void TimerCountdown()
