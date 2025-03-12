@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
+    public bool applyingPower2 = false;
+    public bool applyingSpeed2 = false;
+    public bool applyingMix = false;
     public BoxCollider2D lane1;
     public BoxCollider2D lane2;
     public BoxCollider2D lane3;
@@ -89,6 +92,18 @@ public class GameManager : MonoBehaviour
     {
         applyingSpeed = true;
     }
+    public void ApplyingPower2()
+    {
+        applyingPower2 = true;
+    }
+    public void ApplyingSpeed2()
+    {
+        applyingSpeed2 = true;
+    }
+    public void ApplyingMix()
+    {
+        applyingMix = true;
+    }
     void DetectClick(Vector2 inputPosition)
     {
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(inputPosition);
@@ -101,13 +116,39 @@ public class GameManager : MonoBehaviour
                 ApplyPower(unitCollider, powerupValue1);
                 unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncPower", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedPower);
                 applyingPower = false;
+                CardManager.Instance.DestroySelectedCard();
             }
             if (elixirBar.curElixir >= 2 && applyingSpeed)
             {
                 ApplySpeed(unitCollider, speedupValue1);
                 unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncSpeed", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedSpeed);
                 applyingSpeed = false;
+                CardManager.Instance.DestroySelectedCard();
             }
+            if (elixirBar.curElixir >= 3 && applyingPower2)
+            {
+                ApplyPower(unitCollider, powerupValue1);
+                unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncPower", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedPower);
+                applyingPower2 = false;
+                CardManager.Instance.DestroySelectedCard();
+            }
+            if (elixirBar.curElixir >= 3 && applyingSpeed2)
+            {
+                ApplySpeed(unitCollider, speedupValue1);
+                unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncSpeed", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedSpeed);
+                applyingSpeed2 = false;
+                CardManager.Instance.DestroySelectedCard();
+            }
+            if (elixirBar.curElixir >= 3 && applyingMix)
+            {
+                ApplyPower(unitCollider, powerupValue1);
+                ApplySpeed(unitCollider, speedupValue1);
+                unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncSpeed", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedSpeed);
+                unitCollider.gameObject.GetComponent<PhotonView>().RPC("SyncPower", RpcTarget.AllBuffered, unitCollider.gameObject.GetComponent<Units>().increasedPower);
+                applyingMix = false;
+                CardManager.Instance.DestroySelectedCard();
+            }
+
             return;
         }
 
@@ -166,12 +207,20 @@ public class GameManager : MonoBehaviour
     {
         unit.GetComponent<Units>().increasedPower = powerValue;
         elixirBar.curElixir -= 2;
+        if (powerValue == 2)
+        {
+            elixirBar.curElixir -= 3;
+        }
     }
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
         unit.GetComponent<Units>().increasedSpeed = speedValue;
         elixirBar.curElixir -= 2;
+        if (speedValue == 2)
+        {
+            elixirBar.curElixir -= 3;
+        }
     }
 
     public void TimerCountdown()
