@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameplayParent;
 
     public GameObject countdownTimerText;
-    private float timeLeft = 66f;
+    private float timeLeft = 60f;
     
     private ColorTilesManager colorManager;
 
@@ -76,8 +76,10 @@ public class GameManager : MonoBehaviour
         {
             DetectClick(Input.mousePosition);
         }
-
-        TimerCountdown();
+        if(elixirBar.enabled == true)
+        {
+            TimerCountdown();
+        }
     }
 
     public void SpawningTroop()

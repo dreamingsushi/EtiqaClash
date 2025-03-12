@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 64019560}
   - component: {fileID: 64019559}
   m_Layer: 5
-  m_Name: Button
+  m_Name: back to menu button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

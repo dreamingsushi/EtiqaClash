@@ -8,10 +8,13 @@ using UnityEngine.SceneManagement;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public GameObject connectingText;
+    public GameObject cancelButton;
+    public GameObject tutorialButton;
 
     void Start()
     {
         connectingText.SetActive(false);
+        cancelButton.SetActive(false);
         //PhotonNetwork.AutomaticallySyncScene = true;
     }
 
@@ -24,7 +27,27 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
             
         }
+        cancelButton.SetActive(true);
+        tutorialButton.GetComponent<Image>().color = Color.grey;
+        tutorialButton.GetComponent<Button>().enabled = false;
+    }
 
+    public void OnCancelQueueButtonPressed()
+    {
+        connectingText.SetActive(false);
+        if (PhotonNetwork.IsConnected)
+        { 
+            PhotonNetwork.Disconnect();
+            if(PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                PhotonNetwork.LeaveRoom();
+            }
+        }
+
+        cancelButton.SetActive(false);
+        tutorialButton.GetComponent<Image>().color = Color.yellow;
+        tutorialButton.GetComponent<Button>().enabled = true;
     }
 
     public void GoToTutorial()
@@ -73,7 +96,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if(PhotonNetwork.PlayerList.Length == 2)
         {
             
-            PhotonNetwork.LoadLevel("Network Test Scene");       
+            PhotonNetwork.LoadLevel("Network Game Scene");       
         }
     }
 
@@ -83,7 +106,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         if(PhotonNetwork.PlayerList.Length == 2)
         {
-            PhotonNetwork.LoadLevel("Network Test Scene");       
+            PhotonNetwork.LoadLevel("Network Game Scene");       
         }
     }
 

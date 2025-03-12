@@ -14,6 +14,9 @@ public class TutorialManager : MonoBehaviour
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
+    public bool applyingPower2 = false;
+    public bool applyingSpeed2 = false;
+    public bool applyingMix = false;
     public BoxCollider2D lane1;
     public BoxCollider2D lane2;
     public BoxCollider2D lane3;
@@ -72,6 +75,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(selecting);
         if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false)
         {
             tutorialCanvas.SetActive(true);
@@ -136,6 +140,18 @@ public class TutorialManager : MonoBehaviour
     {
         applyingSpeed = true;
     }
+    public void ApplyingPower2()
+    {
+        applyingPower2 = true;
+    }
+    public void ApplyingSpeed2()
+    {
+        applyingSpeed2 = true;
+    }
+    public void ApplyingMix()
+    {
+        applyingMix = true;
+    }
     void DetectClick(Vector2 inputPosition)
     {
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(inputPosition);
@@ -148,12 +164,34 @@ public class TutorialManager : MonoBehaviour
                 ApplyPower(unitCollider, powerupValue1);
 
                 applyingPower = false;
+                TutorialCardManager.Instance.DestroySelectedCard();
             }
             if (elixirBar.curElixir >= 2 && applyingSpeed)
             {
                 ApplySpeed(unitCollider, speedupValue1);
                 
                 applyingSpeed = false;
+                TutorialCardManager.Instance.DestroySelectedCard();
+            }
+
+            if (elixirBar.curElixir >= 3 && applyingPower2)
+            {
+                ApplyPower(unitCollider, powerupValue1);
+                applyingPower2 = false;
+                TutorialCardManager.Instance.DestroySelectedCard();
+            }
+            if (elixirBar.curElixir >= 3 && applyingSpeed2)
+            {
+                ApplySpeed(unitCollider, speedupValue1);
+                applyingSpeed2 = false;
+                TutorialCardManager.Instance.DestroySelectedCard();
+            }
+            if (elixirBar.curElixir >= 3 && applyingMix)
+            {
+                ApplyPower(unitCollider, powerupValue1);
+                ApplySpeed(unitCollider, speedupValue1);
+                applyingMix = false;
+                TutorialCardManager.Instance.DestroySelectedCard();
             }
             return;
         }
