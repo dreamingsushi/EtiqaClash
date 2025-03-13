@@ -6,7 +6,7 @@ using Photon.Realtime;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
-public class GameplayTest : MonoBehaviourPunCallbacks
+public class GameplayParentObject : MonoBehaviourPunCallbacks
 {   
     
 

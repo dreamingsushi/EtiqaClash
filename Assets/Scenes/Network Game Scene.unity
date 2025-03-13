@@ -2377,6 +2377,7 @@ MonoBehaviour:
   blackTile: {fileID: 11400000, guid: de93a2d4084e0fc4c82d6ea2a3bb7556, type: 2}
   tilesCount: {fileID: 2027673008}
   percentageAmount: 0
+  missions: {fileID: 11400000, guid: 2dbb864998e978d46830411481fe3262, type: 2}
 --- !u!19719996 &776759702
 TilemapCollider2D:
   m_ObjectHideFlags: 0

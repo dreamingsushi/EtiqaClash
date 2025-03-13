@@ -34,7 +34,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void OnCancelQueueButtonPressed()
     {
-        connectingText.SetActive(false);
+        connectingText.GetComponent<TMP_Text>().text = ("Cancelled Queue...");
         if (PhotonNetwork.IsConnected)
         { 
             PhotonNetwork.Disconnect();

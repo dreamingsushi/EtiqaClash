@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using TMPro;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class ColorTilesManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ColorTilesManager : MonoBehaviour
     int blackAmount;
     int totalAmount;
     public float percentageAmount;
+
+    public Mission missions;
 
     void Start()
     {
@@ -35,6 +38,9 @@ public class ColorTilesManager : MonoBehaviour
 
         tilesCount.color = new Color(1, 0.9594803f, 0.7528302f);
         tilesCount.text = percentageAmount.ToString("F1") + "%";
+
+        if(SceneManager.GetActiveScene().name == "Network Game Scene")
+            missions.lastGamePercentage = percentageAmount;
     }
 
     void CountTiles()

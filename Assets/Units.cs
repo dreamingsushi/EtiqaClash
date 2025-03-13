@@ -38,7 +38,7 @@ public class Units : MonoBehaviourPunCallbacks
             GetComponentInChildren<Canvas>().sortingOrder = 10;
             GetComponentInChildren<Canvas>().transform.eulerAngles = new Vector3(0,0,180);
         }
-        this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
+        this.transform.parent = GameObject.FindAnyObjectByType<GameplayParentObject>().transform;
     }
     public override void OnEnable() {
         if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine || PhotonNetwork.LocalPlayer.ActorNumber != 1 && !photonView.IsMine)

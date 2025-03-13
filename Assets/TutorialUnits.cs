@@ -30,7 +30,7 @@ public class TutorialUnits : MonoBehaviourPunCallbacks
     
     private void Awake() {
         
-        this.transform.parent = GameObject.FindAnyObjectByType<GameplayTest>().transform;
+        this.transform.parent = GameObject.FindAnyObjectByType<GameplayParentObject>().transform;
     }
     public override void OnEnable() {
         // if(PhotonNetwork.LocalPlayer.ActorNumber == 1 && photonView.IsMine || PhotonNetwork.LocalPlayer.ActorNumber != 1 && !photonView.IsMine)
