@@ -71,6 +71,7 @@ public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         isSelected = true;
         animator.Play("Selected");
+        AudioManager.Instance.PlaySFX("CardPop");
     }
 
     public void Deselect()
