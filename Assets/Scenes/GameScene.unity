@@ -1781,7 +1781,10 @@ MonoBehaviour:
   unitSpeed: 5
   originalSpeed: 0
   colliding: 0
+  increasedPower: 0
+  increasedSpeed: 0
   unitPowerText: {fileID: 862195613}
+  canTile: 0
 --- !u!50 &698229274
 Rigidbody2D:
   serializedVersion: 5
@@ -1958,6 +1961,9 @@ MonoBehaviour:
   selecting: 0
   applyingPower: 0
   applyingSpeed: 0
+  applyingPower2: 0
+  applyingSpeed2: 0
+  applyingMix: 0
   lane1: {fileID: 838749423}
   lane2: {fileID: 935828546}
   lane3: {fileID: 2087302954}
@@ -1965,6 +1971,11 @@ MonoBehaviour:
   lane5: {fileID: 384965055}
   unitPrefab: {fileID: 546652256657012542, guid: 0a0ede1e5a4def94b911677ec16fd069, type: 3}
   spawnOffset: 1
+  openingCutsceneText: {fileID: 0}
+  powerupValue1: 1
+  speedupValue1: 1
+  gameplayParent: {fileID: 0}
+  countdownTimerText: {fileID: 0}
 --- !u!4 &753721638
 Transform:
   m_ObjectHideFlags: 0
@@ -3606,7 +3617,10 @@ MonoBehaviour:
   unitSpeed: 4
   originalSpeed: 0
   colliding: 0
+  increasedPower: 0
+  increasedSpeed: 0
   unitPowerText: {fileID: 1774400170}
+  canTile: 0
 --- !u!50 &1692052218
 Rigidbody2D:
   serializedVersion: 5
