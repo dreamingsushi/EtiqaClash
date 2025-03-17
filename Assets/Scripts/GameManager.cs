@@ -7,9 +7,12 @@ using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject globalLightObject;
+    public GameObject laneOutline;
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
@@ -82,11 +85,23 @@ public class GameManager : MonoBehaviour
         {
             TimerCountdown();
         }
+
+        if (selecting)
+        {
+            laneOutline.SetActive(true);
+            globalLightObject.GetComponent<Light2D>().intensity = 0.7f;
+        }
+        else
+        {
+            laneOutline.SetActive(false);
+            globalLightObject.GetComponent<Light2D>().intensity = 1f;
+        }
     }
 
     public void SpawningTroop()
     {
         selecting = true;
+        AudioManager.Instance.PlaySFX("CardPop");
     }
     public void ApplyingPower()
     {
@@ -176,6 +191,10 @@ public class GameManager : MonoBehaviour
         {
             OnLaneClicked(5, lane5);
         }
+        else
+        {
+            selecting = false;
+        }
     }
 
     void OnLaneClicked(int laneNumber, BoxCollider2D lane)
@@ -246,10 +265,12 @@ public class GameManager : MonoBehaviour
                 {
                     SceneManager.LoadScene("Victory");
                     AudioManager.Instance.PlaySFX("Victory");
+                    AudioManager.Instance.musicSource.Stop();
                 }
                 else
                     SceneManager.LoadScene("Defeat");
                     AudioManager.Instance.PlaySFX("Lose");
+                    AudioManager.Instance.musicSource.Stop();
             }
             countdownTimerText.GetComponent<TMP_Text>().text = timeLeft.ToString("F1");
         }   
