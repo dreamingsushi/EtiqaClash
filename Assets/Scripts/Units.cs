@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 using Photon.Pun;
 using Unity.Services.Matchmaker.Models;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Units : MonoBehaviourPunCallbacks
 {
@@ -20,6 +21,9 @@ public class Units : MonoBehaviourPunCallbacks
     public int increasedSpeed;
 
     [SerializeField] private TMP_Text unitPowerText;
+    [SerializeField] private ParticleSystem collisonVFX;
+    [SerializeField] private ParticleSystem powerUpVFX;
+    [SerializeField] private ParticleSystem speedUpVFX;
     private ColorTilesManager tileManager;
     public bool canTile;
     private Animator anim;
@@ -165,13 +169,19 @@ public class Units : MonoBehaviourPunCallbacks
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //need to check if colliding with enemy units or limit wall
-        colliding = true;    
+        colliding = true;
+
+        if (collision.collider.tag == "Unit")
+        {
+            collisonVFX.Play();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         colliding = false;
     }
+
     private void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.name == "StartTiling")
         {
@@ -201,4 +211,28 @@ public class Units : MonoBehaviourPunCallbacks
         
 
     }
+
+
+    [PunRPC]
+    public void RPC_PlayPowerUpVFX()
+    {
+        powerUpVFX.Play();
+    }
+
+    [PunRPC]
+    public void RPC_PlaySpeedUpVFX()
+    {
+        speedUpVFX.Play();
+    }
+
+    public void PlayPowerUpVFX()
+    {
+        photonView.RPC("RPC_PlayPowerUpVFX", RpcTarget.All);
+    }
+
+    public void PlaySpeedUpVFX()
+    {
+        photonView.RPC("RPC_PlaySpeedUpVFX", RpcTarget.All);
+    }
+
 }

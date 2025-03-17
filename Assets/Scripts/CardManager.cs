@@ -102,7 +102,6 @@ public class CardManager : MonoBehaviour
             {
                 GameObject newCard = Instantiate(cardPrefab, cardDeckHolder);
                 newCard.GetComponent<Animator>().Play("JumpIn");
-                AudioManager.Instance.PlaySFX("CardPop");
                 return;
             }
         }

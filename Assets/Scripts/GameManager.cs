@@ -211,6 +211,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("PowerUp");
         unit.GetComponent<Units>().increasedPower = powerValue;
+        unit.GetComponent<Units>().PlayPowerUpVFX();
         elixirBar.curElixir -= 2;
         if (powerValue == 2)
         {
@@ -222,6 +223,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("SpeedUp");
         unit.GetComponent<Units>().increasedSpeed = speedValue;
+        unit.GetComponent<Units>().PlaySpeedUpVFX();
         elixirBar.curElixir -= 2;
         if (speedValue == 2)
         {
