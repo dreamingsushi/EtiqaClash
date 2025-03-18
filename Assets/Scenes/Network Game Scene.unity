@@ -216,7 +216,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12654016}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -867,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &351424428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 391758855
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &351424431
@@ -2338,6 +2338,7 @@ GameObject:
   - component: {fileID: 762489602}
   - component: {fileID: 762489601}
   - component: {fileID: 762489600}
+  - component: {fileID: 762489603}
   m_Layer: 5
   m_Name: Troop
   m_TagString: Untagged
@@ -2354,14 +2355,14 @@ RectTransform:
   m_GameObject: {fileID: 762489598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.28044054, y: 0.32993, z: 0.32993}
+  m_LocalScale: {x: 0.30273554, y: 0.35615942, z: 0.35615942}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96426394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 61.39099, y: 60.71704}
+  m_AnchoredPosition: {x: 67.1, y: 65.5}
   m_SizeDelta: {x: 213, y: 162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &762489600
@@ -2458,6 +2459,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762489598}
   m_CullTransparentMesh: 1
+--- !u!114 &762489603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762489598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &776759699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,14 +2711,14 @@ RectTransform:
   m_GameObject: {fileID: 784584003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05608811, y: 0.62832093, z: 0.32993}
+  m_LocalScale: {x: 0.05608811, y: 0.69262564, z: 0.32993}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96426394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 107.59, y: 56.6}
+  m_AnchoredPosition: {x: 116.4, y: 59}
   m_SizeDelta: {x: 213, y: 162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &784584005
