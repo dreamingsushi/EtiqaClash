@@ -354,7 +354,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator EnemyTutorial()
     {
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(6.8f);
         enemyUnitTutorial.SetActive(true);
 
     }
