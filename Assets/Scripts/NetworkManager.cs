@@ -54,7 +54,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void GoToTutorial()
     {
         AudioManager.Instance.PlaySFX("MenuButton");
-        SceneManager.LoadScene("Tutorial");
+        AudioManager.Instance.musicSource.Stop();   
+        SceneManager.LoadScene("Tutorial");   
+        AudioManager.Instance.PlayBattleMusic();  
     }
 
     public override void OnConnected()

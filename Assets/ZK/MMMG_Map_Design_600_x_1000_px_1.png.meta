@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3e29f13e4d4bd064fbb82ba94d2c4c45
+guid: 290206c432a919f489cee8deaadc84ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 356131462863844279
-    second: 60fe968c3d624000048712a0_0
+      213: 7513271025387934964
+    second: MMMG_Map_Design_600_x_1000_px_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -110,32 +110,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -152,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 60fe968c3d624000048712a0_0
+      name: MMMG_Map_Design_600_x_1000_px_1_0
       rect:
         serializedVersion: 2
-        x: 111
-        y: 161
-        width: 1812
-        height: 878
+        x: 0
+        y: 0
+        width: 600
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b3f659bdab31f400800000000000000
-      internalID: 356131462863844279
+      spriteID: 4f49b79c030844860800000000000000
+      internalID: 7513271025387934964
       vertices: []
       indices: 
       edges: []
@@ -186,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      60fe968c3d624000048712a0_0: 356131462863844279
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

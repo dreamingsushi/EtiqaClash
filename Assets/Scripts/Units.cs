@@ -37,6 +37,7 @@ public class Units : MonoBehaviourPunCallbacks
         if(!photonView.IsMine)
         {
             GetComponent<Units>().team = TeamColor.Black;
+            gameObject.tag = "UnitBlack";
             //GetComponent<SpriteRenderer>().color = Color.grey;
             GetComponent<SpriteRenderer>().sortingOrder = 3;
             GetComponentInChildren<Canvas>().sortingOrder = 10;

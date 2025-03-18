@@ -19,6 +19,9 @@ public class TutorialUnits : MonoBehaviourPunCallbacks
     public int increasedPower;
 
     [SerializeField] private TMP_Text unitPowerText;
+    [SerializeField] private ParticleSystem collisonVFX;
+    [SerializeField] private ParticleSystem powerUpVFX;
+    [SerializeField] private ParticleSystem speedUpVFX;
     private ColorTilesManager tileManager;
     public bool canTile;
     private Animator anim;
@@ -156,7 +159,12 @@ public class TutorialUnits : MonoBehaviourPunCallbacks
         //need to check if colliding with enemy units or limit wall
         increasedPower = unitPower;
         //unitPower = 1;
-        colliding = true;    
+        colliding = true;
+
+        if (collision.collider.tag == "Unit")
+        {
+            collisonVFX.Play();
+        }    
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -192,5 +200,15 @@ public class TutorialUnits : MonoBehaviourPunCallbacks
         originalSpeed += speed;
         
 
+    }
+
+    public void PlayPowerUpVFX()
+    {
+        powerUpVFX.Play();
+    }
+
+    public void PlaySpeedUpVFX()
+    {
+        speedUpVFX.Play();
     }
 }

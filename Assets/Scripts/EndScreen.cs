@@ -9,11 +9,13 @@ public class EndScreen : MonoBehaviour
         {
             PlayerPrefs.SetInt("DailyGame", 1);
         }
+        AudioManager.Instance.PlayMusic("BGM");
         SceneManager.LoadScene(0);
     }
 
     public void ExitTutorial()
     {
+        AudioManager.Instance.PlayMusic("BGM");
         SceneManager.LoadScene(0);
     }
 }

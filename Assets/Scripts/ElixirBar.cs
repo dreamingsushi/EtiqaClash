@@ -7,7 +7,7 @@ public class ElixirBar : MonoBehaviour
     public float curElixir;
     public float maxElixir = 10;
     public float elixirGainRate = 1f;
-    
+    public GameObject honeyDripVFX; 
     private Image elixirDisplay;
 
     void Start()
@@ -25,6 +25,15 @@ public class ElixirBar : MonoBehaviour
             {
                 curElixir += elixirGainRate * Time.deltaTime;
                 curElixir = Mathf.Min(curElixir, maxElixir); // Clamping
+            }
+
+            if (curElixir >= maxElixir)
+            {
+                honeyDripVFX.SetActive(true);
+            }
+            else
+            {
+                honeyDripVFX.SetActive(false);
             }
             UpdateElixirUI();
         }

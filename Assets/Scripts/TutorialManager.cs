@@ -8,9 +8,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.Rendering.Universal;
 
 public class TutorialManager : MonoBehaviour
 {
+    public GameObject globalLightObject;
+    public GameObject laneOutline;
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
@@ -83,7 +86,16 @@ public class TutorialManager : MonoBehaviour
             
         }
 
-        
+        if (selecting)
+        {
+            laneOutline.SetActive(true);
+            globalLightObject.GetComponent<Light2D>().intensity = 0.7f;
+        }
+        else
+        {
+            laneOutline.SetActive(false);
+            globalLightObject.GetComponent<Light2D>().intensity = 1f;
+        }
         // if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false && tutorialEnded)
         // {
         //     elixirBar.enabled = true;
@@ -237,7 +249,7 @@ public class TutorialManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        
+        AudioManager.Instance.PlaySFX("DeployBee");
         spawnOffset = 0.5f;
         
 
@@ -255,16 +267,19 @@ public class TutorialManager : MonoBehaviour
 
     void ApplyPower(Collider2D unit, int powerValue)
     {
+        AudioManager.Instance.PlaySFX("PowerUp");
         unit.GetComponent<TutorialUnits>().unitPower ++;
         unit.GetComponent<TutorialUnits>().increasedPower ++;
+        unit.GetComponent<TutorialUnits>().PlayPowerUpVFX();
 
         elixirBar.curElixir -= 2;
     }
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
+        AudioManager.Instance.PlaySFX("SpeedUp");
         unit.GetComponent<TutorialUnits>().originalSpeed ++;
-
+        unit.GetComponent<TutorialUnits>().PlaySpeedUpVFX();
         elixirBar.curElixir -= 2;
     }
     void StartTutorialPhase()
@@ -367,6 +382,8 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(6f);
 
         endTutorial.SetActive(false);
+
+        AudioManager.Instance.PlayMusic("BGM");
     }
 
     public void TimerCountdown()

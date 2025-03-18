@@ -24,16 +24,19 @@ public class CardBoardmanager : MonoBehaviour
 
     public void ShowCardBoard()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         CardBanim.SetTrigger("Open");
     }
     public void HideCardBoard()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         CardBanim.SetTrigger("Close");
     }
 
 
     public void ShowBC1()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         BC1.SetActive(true);
     }
     public void HideBC1()
@@ -43,6 +46,7 @@ public class CardBoardmanager : MonoBehaviour
 
     public void ShowBC2()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         BC2.SetActive(true);
     }
     public void HideBC2()
@@ -52,6 +56,7 @@ public class CardBoardmanager : MonoBehaviour
 
     public void ShowBC3()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         BC3.SetActive(true);
     }
     public void HideBC3()
@@ -61,6 +66,7 @@ public class CardBoardmanager : MonoBehaviour
 
     public void ShowBC4()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         BC4.SetActive(true);
     }
     public void HideBC4()
@@ -70,6 +76,7 @@ public class CardBoardmanager : MonoBehaviour
 
     public void ShowBC5()
     {
+        AudioManager.Instance.PlaySFX("MenuButton");
         BC5.SetActive(true);
     }
     public void HideBC5()

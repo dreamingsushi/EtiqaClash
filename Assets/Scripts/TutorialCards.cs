@@ -29,6 +29,7 @@ public class TutorialCards : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         gameManager = FindAnyObjectByType<TutorialManager>();
         animator = GetComponent<Animator>();
         cardManager = TutorialCardManager.Instance;
+        AudioManager.Instance.PlaySFX("CardPop");
     }
     void Update()
     {
@@ -71,6 +72,7 @@ public class TutorialCards : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         isSelected = true;
         animator.Play("Selected");
+        AudioManager.Instance.PlaySFX("CardPop");
     }
 
     public void Deselect()
