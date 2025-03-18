@@ -7,9 +7,12 @@ using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject globalLightObject;
+    public GameObject laneOutline;
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
     private float timeLeft = 60f;
     
     private ColorTilesManager colorManager;
-
+    private CardManager cardManager;
     private ElixirBar elixirBar;
 
     void Awake()
@@ -44,7 +47,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        cardManager = FindAnyObjectByType<CardManager>();
+        cardManager.enabled = false;
         elixirBar = FindAnyObjectByType<ElixirBar>();
         elixirBar.enabled = false;
         if(!PhotonNetwork.LocalPlayer.IsMasterClient)
@@ -60,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false)
         {
+            cardManager.enabled = true;
             elixirBar.enabled = true;
             openingCutsceneText.transform.parent.gameObject.SetActive(false);
         }
@@ -80,11 +85,23 @@ public class GameManager : MonoBehaviour
         {
             TimerCountdown();
         }
+
+        if (selecting)
+        {
+            laneOutline.SetActive(true);
+            globalLightObject.GetComponent<Light2D>().intensity = 0.7f;
+        }
+        else
+        {
+            laneOutline.SetActive(false);
+            globalLightObject.GetComponent<Light2D>().intensity = 1f;
+        }
     }
 
     public void SpawningTroop()
     {
         selecting = true;
+        AudioManager.Instance.PlaySFX("CardPop");
     }
     public void ApplyingPower()
     {
@@ -174,6 +191,10 @@ public class GameManager : MonoBehaviour
         {
             OnLaneClicked(5, lane5);
         }
+        else
+        {
+            selecting = false;
+        }
     }
 
     void OnLaneClicked(int laneNumber, BoxCollider2D lane)
@@ -189,7 +210,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        
+        AudioManager.Instance.PlaySFX("DeployBee");
         spawnOffset = 0.5f;
         
 
@@ -207,7 +228,9 @@ public class GameManager : MonoBehaviour
 
     void ApplyPower(Collider2D unit, int powerValue)
     {
+        AudioManager.Instance.PlaySFX("PowerUp");
         unit.GetComponent<Units>().increasedPower = powerValue;
+        unit.GetComponent<Units>().PlayPowerUpVFX();
         elixirBar.curElixir -= 2;
         if (powerValue == 2)
         {
@@ -217,7 +240,9 @@ public class GameManager : MonoBehaviour
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
+        AudioManager.Instance.PlaySFX("SpeedUp");
         unit.GetComponent<Units>().increasedSpeed = speedValue;
+        unit.GetComponent<Units>().PlaySpeedUpVFX();
         elixirBar.curElixir -= 2;
         if (speedValue == 2)
         {
@@ -239,9 +264,13 @@ public class GameManager : MonoBehaviour
                 if(colorManager.percentageAmount > 50f)
                 {
                     SceneManager.LoadScene("Victory");
+                    AudioManager.Instance.PlaySFX("Victory");
+                    AudioManager.Instance.musicSource.Stop();
                 }
                 else
                     SceneManager.LoadScene("Defeat");
+                    AudioManager.Instance.PlaySFX("Lose");
+                    AudioManager.Instance.musicSource.Stop();
             }
             countdownTimerText.GetComponent<TMP_Text>().text = timeLeft.ToString("F1");
         }   

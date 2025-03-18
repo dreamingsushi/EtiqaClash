@@ -42,6 +42,8 @@ MonoBehaviour:
   - ApplyPower
   - SyncPower
   - SyncSpeed
+  - RPC_PlayPowerUpVFX
+  - RPC_PlaySpeedUpVFX
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
