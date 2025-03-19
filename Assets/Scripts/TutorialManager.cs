@@ -52,6 +52,7 @@ public class TutorialManager : MonoBehaviour
     private ColorTilesManager colorManager;
 
     private ElixirBar elixirBar;
+    private bool infiniteSelecting;
     private bool tutorialEnded;
 
     void Start()
@@ -108,9 +109,10 @@ public class TutorialManager : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-                if(!tutorialEnded)
+                Time.timeScale = 1f;
+                if(tutorialCutscene)
                 {
-                    Time.timeScale = 1f;
+                    
                     StartTutorialPhase();
                 }
                 
@@ -119,9 +121,10 @@ public class TutorialManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            if(!tutorialEnded)
+            Time.timeScale = 1f;
+            if(tutorialCutscene)
             {
-                Time.timeScale = 1f;
+                
                 StartTutorialPhase();
             }
             DetectClick(Input.mousePosition);
@@ -131,15 +134,21 @@ public class TutorialManager : MonoBehaviour
 
         if(enemyUnitTutorial.activeInHierarchy && showLastTutorial)
         {
+            tutorialCutscene = true;
             showLastTutorial = false;
             StartTutorialPhase();
+        }
+        Debug.Log(currentTutorial);
+        if(infiniteSelecting)
+        {
+            selecting = true;
         }
     }
 
     public void SpawningTroop()
     {
         selecting = true;
-        if(tutorialEnded == false)
+        if(tutorialEnded == false && currentTutorial < 10)
         {
             tutorialCutscene = true;
             StartTutorialPhase();
@@ -239,7 +248,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (elixirBar.curElixir >= 2 && selecting)
         {
-            if(!tutorialEnded)
+            if(!tutorialEnded && currentTutorial < 10)
             {
                 tutorialCutscene = true;
                 StartTutorialPhase();
@@ -289,26 +298,37 @@ public class TutorialManager : MonoBehaviour
     }
     void StartTutorialPhase()
     {   
-
+        
         if(tutorialCutscene)
         {
             foreach(GameObject obj in tutorialObjects)
             {
                 obj.SetActive(false);
             }
-            
-            if(tutorialObjects[currentTutorial].name == "enemy")
+
+            if(enemyUnitTutorial.activeInHierarchy && !tutorialEnded)
             {
-                Time.timeScale = 1f;
-                tutorialCutscene = false;
+                tutorialObjects[currentTutorial+1].SetActive(true);
+                Time.timeScale = 0f;
+                // tutorialObjects[tutorialObjects.Count-1].SetActive(true);
                 tutorialEnded = true;
                 StartCoroutine(EndTutorial());
+                return;
+            }
+            
+            if(tutorialObjects[currentTutorial].name == "enemy" && tutorialEnded)
+            {
+                tutorialObjects[currentTutorial].SetActive(false);
+                Time.timeScale = 1f;
+                tutorialCutscene = false;
+                
+                
                 return;
             }
 
             if(tutorialEnded)
             {
-                return;
+                return; 
             }
             else
             {
@@ -334,10 +354,12 @@ public class TutorialManager : MonoBehaviour
             if(tutorialObjects[currentTutorial- 1].name == "Arrow")
             {
                 tutorialCutscene = false;
+                infiniteSelecting = true;
             }
 
             if(tutorialObjects[currentTutorial].name == "timestop")
             {
+                infiniteSelecting = false;
                 Time.timeScale = 0f;
                 
             }
@@ -361,13 +383,7 @@ public class TutorialManager : MonoBehaviour
             
         }
 
-        if(enemyUnitTutorial.activeInHierarchy)
-        {
-            Time.timeScale = 0f;
-            tutorialObjects[tutorialObjects.Count-1].SetActive(true);
-            tutorialCutscene = true;
-            
-        }
+        
 
         
     }
