@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: a4cf2c9eadc8bb44588a5184dfeebebd
+guid: 225a56badbedf4248baed9d0e8218c86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5015517546404145680
-    second: Image (21)_0
+      213: 1199052978464596009
+    second: eTiQaEFX (7)_0
+  - first:
+      213: 5887222084177392496
+    second: eTiQaEFX (7)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -110,6 +113,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Image (21)_0
+      name: eTiQaEFX (7)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 712
-        height: 768
+        x: 147
+        y: 64
+        width: 127
+        height: 269
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +157,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f597d96d5d456ab0800000000000000
-      internalID: -5015517546404145680
+      spriteID: 920a140c454e3a010800000000000000
+      internalID: 1199052978464596009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eTiQaEFX (7)_1
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 274
+        width: 82
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0737a313b4d93b150800000000000000
+      internalID: 5887222084177392496
       vertices: []
       indices: 
       edges: []
@@ -161,7 +199,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Image (21)_0: -5015517546404145680
+      eTiQaEFX (7)_0: 1199052978464596009
+      eTiQaEFX (7)_1: 5887222084177392496
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

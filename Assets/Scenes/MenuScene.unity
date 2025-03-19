@@ -832,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
       propertyPath: musicSounds.Array.size
@@ -909,6 +909,22 @@ PrefabInstance:
     - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
       propertyPath: sfxSounds.Array.data[8].name
       value: Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+      propertyPath: sfxSounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d3d2f353fd239824fb9c8851737b44b5, type: 3}
+    - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+      propertyPath: sfxSounds.Array.data[9].name
+      value: Elixir
+      objectReference: {fileID: 0}
+    - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+      propertyPath: sfxSounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d6a12ea7c61e3eb4394c8dc661ee943f, type: 3}
+    - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+      propertyPath: sfxSounds.Array.data[10].name
+      value: Clashed
       objectReference: {fileID: 0}
     - target: {fileID: 829104174961725304, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
       propertyPath: musicSounds.Array.data[0].clip

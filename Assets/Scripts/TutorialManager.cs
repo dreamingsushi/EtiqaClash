@@ -229,6 +229,10 @@ public class TutorialManager : MonoBehaviour
         {
             OnLaneClicked(5, lane5);
         }
+        else
+        {
+            selecting = false;
+        }
     }
 
     void OnLaneClicked(int laneNumber, BoxCollider2D lane)

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
+using ExitGames.Client.Photon.StructWrapping;
 
 public class ElixirBar : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class ElixirBar : MonoBehaviour
     public float elixirGainRate = 1f;
     public GameObject honeyDripVFX; 
     private Image elixirDisplay;
+    public TextMeshProUGUI elixirCount;
+
+    private int lastElixirInt;
 
     void Start()
     {
@@ -20,11 +25,18 @@ public class ElixirBar : MonoBehaviour
     {
         while (true)
         {
-            yield return null; // Wait for next frame
+            yield return null;
             if (curElixir < maxElixir)
             {
                 curElixir += elixirGainRate * Time.deltaTime;
-                curElixir = Mathf.Min(curElixir, maxElixir); // Clamping
+                curElixir = Mathf.Min(curElixir, maxElixir);
+            }
+
+            int currentElixirInt = Mathf.FloorToInt(curElixir);
+            if (currentElixirInt > lastElixirInt) // Detects only when a new int is reached
+            {
+                lastElixirInt = currentElixirInt;
+                OnElixirIntReached(currentElixirInt);
             }
 
             if (curElixir >= maxElixir)
@@ -43,7 +55,17 @@ public class ElixirBar : MonoBehaviour
     {
         if (elixirDisplay != null)
         {
-            elixirDisplay.fillAmount = curElixir / maxElixir; // Normalize to 0-1
+            elixirDisplay.fillAmount = curElixir / maxElixir;
         }
+
+        if (elixirCount != null)
+        {
+            elixirCount.text = Mathf.FloorToInt(curElixir).ToString();
+        }
+    }
+
+    void OnElixirIntReached(int elixirInt)
+    {
+        AudioManager.Instance.PlaySFX("Elixir");
     }
 }

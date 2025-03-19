@@ -175,6 +175,7 @@ public class Units : MonoBehaviourPunCallbacks
         if (collision.collider.tag == "Unit")
         {
             collisonVFX.Play();
+            AudioManager.Instance.PlaySFX("Clashed");
         }
     }
 
