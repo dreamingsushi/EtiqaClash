@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 290206c432a919f489cee8deaadc84ec
+guid: a4cf2c9eadc8bb44588a5184dfeebebd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7513271025387934964
-    second: MMMG_Map_Design_600_x_1000_px_1_0
+      213: -5015517546404145680
+    second: Image (21)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MMMG_Map_Design_600_x_1000_px_1_0
+      name: Image (21)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 600
-        height: 1000
+        width: 712
+        height: 768
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f49b79c030844860800000000000000
-      internalID: 7513271025387934964
+      spriteID: 0f597d96d5d456ab0800000000000000
+      internalID: -5015517546404145680
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      MMMG_Map_Design_600_x_1000_px_1_0: 7513271025387934964
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

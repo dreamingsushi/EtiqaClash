@@ -29,7 +29,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             
         }
         cancelButton.SetActive(true);
-        tutorialButton.GetComponent<Image>().color = Color.grey;
+        //tutorialButton.GetComponent<Image>().color = Color.grey;
         tutorialButton.GetComponent<Button>().enabled = false;
     }
 
@@ -47,7 +47,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
 
         cancelButton.SetActive(false);
-        tutorialButton.GetComponent<Image>().color = Color.yellow;
+        //tutorialButton.GetComponent<Image>().color = Color.yellow;
         tutorialButton.GetComponent<Button>().enabled = true;
     }
 
