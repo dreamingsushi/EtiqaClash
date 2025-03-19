@@ -40,6 +40,7 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> tutorialObjects;
     public GameObject tutorialMsg;
     public GameObject enemyUnitTutorial;
+    public float enemyTutorialSpawnInterval = 8.8f;
     public GameObject blocker;
     public GameObject endTutorial;
     private int currentTutorial = 0;
@@ -369,7 +370,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator EnemyTutorial()
     {
-        yield return new WaitForSeconds(6.8f);
+        yield return new WaitForSeconds(enemyTutorialSpawnInterval);
         enemyUnitTutorial.SetActive(true);
 
     }
