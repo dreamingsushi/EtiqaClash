@@ -369,7 +369,7 @@ public class TutorialManager : MonoBehaviour
             {
                 
                 elixirBar.maxElixir = 10;
-                
+                Time.timeScale = 0;
                 StartCoroutine(EnemyTutorial());
                 
             }
@@ -400,11 +400,11 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(7.5f);
         
         endTutorial.SetActive(true);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(10f);
 
         endTutorial.SetActive(false);
 
-        AudioManager.Instance.PlayMusic("BGM");
+        //AudioManager.Instance.PlayMusic("BGM");
     }
 
     public void TimerCountdown()

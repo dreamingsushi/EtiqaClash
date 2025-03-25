@@ -10,6 +10,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject connectingText;
     public GameObject cancelButton;
     public GameObject tutorialButton;
+    public GameObject tutorialCanvas;
 
     void Start()
     {
@@ -49,6 +50,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         cancelButton.SetActive(false);
         //tutorialButton.GetComponent<Image>().color = Color.yellow;
         tutorialButton.GetComponent<Button>().enabled = true;
+    }
+
+    public void OnTutorialCancel(bool opened)
+    {
+        tutorialCanvas.SetActive(opened);
     }
 
     public void GoToTutorial()

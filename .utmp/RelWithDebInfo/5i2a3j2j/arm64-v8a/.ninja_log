@@ -1,12 +1,23 @@
 # ninja log v5
-130	960	7640375395168770	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a92229d917c89aa0
 981	1665	7640375402054490	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5i2a3j2j/obj/arm64-v8a/libswappywrapper.so	87aeb3f3dce4480e
+2	3919	7640375424603834	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	25777cd53a72d834
+130	960	7640375395168770	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a92229d917c89aa0
 37	2942	7640375414774647	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	6ae1c6b0f710a258
+14	3331	7640375418817141	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	98894ae942c1034e
 88	3007	7640375415623939	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fd59af856858dc17
+110	3173	7640375417245021	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c26fd8b32cf69fc0
 24	3049	7640375416040148	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	683349f06a5b5ae8
 62	3096	7640375416543953	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9a589b2110b5394a
-110	3173	7640375417245021	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c26fd8b32cf69fc0
-14	3331	7640375418817141	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	98894ae942c1034e
 48	3615	7640375421677578	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b912f36001a0d731
-2	3919	7640375424603834	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	25777cd53a72d834
 3920	4164	7640375427244425	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5i2a3j2j/obj/arm64-v8a/libgame.so	ce5243b03036466c
+58	699	7644681530440345	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a92229d917c89aa0
+700	1148	7644681534876354	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5i2a3j2j/obj/arm64-v8a/libswappywrapper.so	87aeb3f3dce4480e
+47	2929	7644681552646612	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	6ae1c6b0f710a258
+36	2970	7644681553035893	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fd59af856858dc17
+30	2980	7644681553142206	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	683349f06a5b5ae8
+24	3055	7644681553890219	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9a589b2110b5394a
+52	3105	7644681554377027	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c26fd8b32cf69fc0
+19	3184	7644681555227983	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	98894ae942c1034e
+41	3367	7644681557101936	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b912f36001a0d731
+5	3473	7644681558172592	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	25777cd53a72d834
+3473	3596	7644681559459798	C:/APU/MMMG/Assignment/Unity Project/EtiqaClash/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5i2a3j2j/obj/arm64-v8a/libgame.so	ce5243b03036466c
