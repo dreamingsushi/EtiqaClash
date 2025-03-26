@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class AudioManager : MonoBehaviour
 {
@@ -44,15 +45,33 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(string name)
     {
-        Sound s = Array.Find(sfxSounds, x => x.name == name);
-        if (s == null)
+        RPC_PlaySFX(name);
+    }
+    
+    public void PlaySFXForBothPlayers(string name)
+    {
+        PhotonView photonView = GetComponent<PhotonView>();
+        if (photonView != null && PhotonNetwork.InRoom)
         {
-            Debug.Log("Sound not Found");
+            photonView.RPC("RPC_PlaySFX", RpcTarget.All, name);
         }
         else
         {
-            sfxSource.PlayOneShot(s.clip);
+            RPC_PlaySFX(name); // Fallback for offline mode
         }
+    }
+
+    [PunRPC]
+    private void RPC_PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+        if (s == null)
+        {
+            Debug.Log($"Sound '{name}' not found!");
+            return;
+        }
+
+        sfxSource.PlayOneShot(s.clip);
     }
 
     public void MusicVolume(float volume)

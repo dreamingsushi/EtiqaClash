@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject globalLightObject;
     public GameObject laneOutline;
+    public GameObject laneCollider;
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
@@ -89,11 +90,13 @@ public class GameManager : MonoBehaviour
         if (selecting)
         {
             laneOutline.SetActive(true);
+            laneCollider.SetActive(true);
             globalLightObject.GetComponent<Light2D>().intensity = 0.7f;
         }
         else
         {
             laneOutline.SetActive(false);
+            laneCollider.SetActive(false);
             globalLightObject.GetComponent<Light2D>().intensity = 1f;
         }
     }
@@ -122,6 +125,14 @@ public class GameManager : MonoBehaviour
     public void ApplyingMix()
     {
         applyingMix = true;
+    }
+    public void DeselectAllPowerups()
+    {
+        applyingPower = false;
+        applyingSpeed = false;
+        applyingPower2 = false;
+        applyingSpeed2 = false;
+        applyingMix = false;
     }
     void DetectClick(Vector2 inputPosition)
     {
@@ -210,7 +221,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        AudioManager.Instance.PlaySFX("DeployBee");
+        AudioManager.Instance.PlaySFXForBothPlayers("DeployBee");
         spawnOffset = 0.5f;
         
 
@@ -223,12 +234,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
-
 
     void ApplyPower(Collider2D unit, int powerValue)
     {
-        AudioManager.Instance.PlaySFX("PowerUp");
+        AudioManager.Instance.PlaySFXForBothPlayers("PowerUp");
         unit.GetComponent<Units>().increasedPower = powerValue;
         unit.GetComponent<Units>().PlayPowerUpVFX();
         elixirBar.curElixir -= (powerValue == 2) ? 3 : 2;
@@ -236,7 +245,7 @@ public class GameManager : MonoBehaviour
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
-        AudioManager.Instance.PlaySFX("SpeedUp");
+        AudioManager.Instance.PlaySFXForBothPlayers("SpeedUp");
         unit.GetComponent<Units>().increasedSpeed = speedValue;
         unit.GetComponent<Units>().PlaySpeedUpVFX();
         elixirBar.curElixir -= (speedValue == 2) ? 3 : 2;

@@ -1102,13 +1102,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7533636572243428497, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533636572243428497, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
       propertyPath: m_Volume
       value: 0.125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5682961680390897794, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1259867714}
   m_SourcePrefab: {fileID: 100100000, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
 --- !u!1 &262971762
 GameObject:
@@ -6204,6 +6211,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -434}
   m_SizeDelta: {x: 407.1, y: 50}
   m_Pivot: {x: 1, y: 1}
+--- !u!1 &1259867711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5682961680390897794, guid: 6c3f43fe97c0c0d4ab0a3097fc8589a3, type: 3}
+  m_PrefabInstance: {fileID: 235537750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1259867714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259867711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 0
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1305125612
 GameObject:
   m_ObjectHideFlags: 0

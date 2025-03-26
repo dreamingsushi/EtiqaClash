@@ -86,7 +86,8 @@ public class TutorialCards : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (isSelected) return;
 
         cardManager.SelectCard(this);
-
+        
+        gameManager.DeselectAllPowerups();
             switch (currentCard)
             {
                 case CardType.Power:

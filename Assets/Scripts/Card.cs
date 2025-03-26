@@ -78,6 +78,7 @@ public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void Deselect()
     {
         isSelected = false;
+        gameManager.DeselectAllPowerups();
         animator.Play("Idle");
     }
 

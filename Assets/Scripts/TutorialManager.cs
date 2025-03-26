@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject globalLightObject;
     public GameObject laneOutline;
+    public GameObject laneCollider;
     public bool selecting = false;
     public bool applyingPower = false;
     public bool applyingSpeed = false;
@@ -91,11 +92,13 @@ public class TutorialManager : MonoBehaviour
         if (selecting)
         {
             laneOutline.SetActive(true);
+            laneCollider.SetActive(true);
             globalLightObject.GetComponent<Light2D>().intensity = 0.7f;
         }
         else
         {
             laneOutline.SetActive(false);
+            laneCollider.SetActive(false);
             globalLightObject.GetComponent<Light2D>().intensity = 1f;
         }
         // if(openingCutsceneText.GetComponent<UnityEngine.UI.Image>().enabled == false && tutorialEnded)
@@ -173,6 +176,14 @@ public class TutorialManager : MonoBehaviour
     public void ApplyingMix()
     {
         applyingMix = true;
+    }
+    public void DeselectAllPowerups()
+    {
+        applyingPower = false;
+        applyingSpeed = false;
+        applyingPower2 = false;
+        applyingSpeed2 = false;
+        applyingMix = false;
     }
     void DetectClick(Vector2 inputPosition)
     {
@@ -263,7 +274,7 @@ public class TutorialManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        AudioManager.Instance.PlaySFX("DeployBee");
+        AudioManager.Instance.PlaySFXForBothPlayers("DeployBee");
         spawnOffset = 0.5f;
         
 
@@ -281,7 +292,7 @@ public class TutorialManager : MonoBehaviour
 
     void ApplyPower(Collider2D unit, int powerValue)
     {
-        AudioManager.Instance.PlaySFX("PowerUp");
+        AudioManager.Instance.PlaySFXForBothPlayers("PowerUp");
         unit.GetComponent<TutorialUnits>().unitPower ++;
         unit.GetComponent<TutorialUnits>().increasedPower ++;
         unit.GetComponent<TutorialUnits>().PlayPowerUpVFX();
@@ -291,7 +302,7 @@ public class TutorialManager : MonoBehaviour
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
-        AudioManager.Instance.PlaySFX("SpeedUp");
+        AudioManager.Instance.PlaySFXForBothPlayers("SpeedUp");
         unit.GetComponent<TutorialUnits>().originalSpeed ++;
         unit.GetComponent<TutorialUnits>().PlaySpeedUpVFX();
         elixirBar.curElixir -= 2;
