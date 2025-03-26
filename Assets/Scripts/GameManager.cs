@@ -231,11 +231,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("PowerUp");
         unit.GetComponent<Units>().increasedPower = powerValue;
         unit.GetComponent<Units>().PlayPowerUpVFX();
-        elixirBar.curElixir -= 2;
-        if (powerValue == 2)
-        {
-            elixirBar.curElixir -= 3;
-        }
+        elixirBar.curElixir -= (powerValue == 2) ? 3 : 2;
     }
 
     void ApplySpeed(Collider2D unit, int speedValue)
@@ -243,11 +239,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("SpeedUp");
         unit.GetComponent<Units>().increasedSpeed = speedValue;
         unit.GetComponent<Units>().PlaySpeedUpVFX();
-        elixirBar.curElixir -= 2;
-        if (speedValue == 2)
-        {
-            elixirBar.curElixir -= 3;
-        }
+        elixirBar.curElixir -= (speedValue == 2) ? 3 : 2;
     }
 
     public void TimerCountdown()

@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  unitPower: 2
+  unitPower: 1
   unitSpeed: 1
   originalSpeed: 0
   colliding: 0
