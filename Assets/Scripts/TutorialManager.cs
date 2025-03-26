@@ -274,7 +274,7 @@ public class TutorialManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        AudioManager.Instance.PlaySFXForBothPlayers("DeployBee");
+        AudioManager.Instance.PlaySFX("DeployBee");
         spawnOffset = 0.5f;
         
 
@@ -292,7 +292,7 @@ public class TutorialManager : MonoBehaviour
 
     void ApplyPower(Collider2D unit, int powerValue)
     {
-        AudioManager.Instance.PlaySFXForBothPlayers("PowerUp");
+        AudioManager.Instance.PlaySFX("PowerUp");
         unit.GetComponent<TutorialUnits>().unitPower ++;
         unit.GetComponent<TutorialUnits>().increasedPower ++;
         unit.GetComponent<TutorialUnits>().PlayPowerUpVFX();
@@ -302,7 +302,7 @@ public class TutorialManager : MonoBehaviour
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
-        AudioManager.Instance.PlaySFXForBothPlayers("SpeedUp");
+        AudioManager.Instance.PlaySFX("SpeedUp");
         unit.GetComponent<TutorialUnits>().originalSpeed ++;
         unit.GetComponent<TutorialUnits>().PlaySpeedUpVFX();
         elixirBar.curElixir -= 2;

@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -21,6 +19,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -44,25 +43,6 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlaySFX(string name)
-    {
-        RPC_PlaySFX(name);
-    }
-    
-    public void PlaySFXForBothPlayers(string name)
-    {
-        PhotonView photonView = GetComponent<PhotonView>();
-        if (photonView != null && PhotonNetwork.InRoom)
-        {
-            photonView.RPC("RPC_PlaySFX", RpcTarget.All, name);
-        }
-        else
-        {
-            RPC_PlaySFX(name); // Fallback for offline mode
-        }
-    }
-
-    [PunRPC]
-    private void RPC_PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
         if (s == null)

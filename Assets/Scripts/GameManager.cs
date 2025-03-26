@@ -221,7 +221,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnUnitAbove(BoxCollider2D lane)
     {
-        AudioManager.Instance.PlaySFXForBothPlayers("DeployBee");
+        AudioManager.Instance.PlaySFX("DeployBee");
         spawnOffset = 0.5f;
         
 
@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour
 
     void ApplyPower(Collider2D unit, int powerValue)
     {
-        AudioManager.Instance.PlaySFXForBothPlayers("PowerUp");
+        AudioManager.Instance.PlaySFX("PowerUp");
         unit.GetComponent<Units>().increasedPower = powerValue;
         unit.GetComponent<Units>().PlayPowerUpVFX();
         elixirBar.curElixir -= (powerValue == 2) ? 3 : 2;
@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour
 
     void ApplySpeed(Collider2D unit, int speedValue)
     {
-        AudioManager.Instance.PlaySFXForBothPlayers("SpeedUp");
+        AudioManager.Instance.PlaySFX("SpeedUp");
         unit.GetComponent<Units>().increasedSpeed = speedValue;
         unit.GetComponent<Units>().PlaySpeedUpVFX();
         elixirBar.curElixir -= (speedValue == 2) ? 3 : 2;
