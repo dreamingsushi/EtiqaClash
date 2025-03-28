@@ -28,12 +28,12 @@ public class DailyMissions : MonoBehaviour
 
     // Update is called once per frame
     
-    public void OpenMission(GameObject panelUI)
+    public void OpenChosenPanel(GameObject panelUI)
     {
         panelUI.SetActive(true);
     }
 
-    public void CloseMission(GameObject panelUI)
+    public void CloseChosenPanel(GameObject panelUI)
     {
         panelUI.SetActive(false);
 
